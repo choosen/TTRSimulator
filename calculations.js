@@ -3,7 +3,6 @@ var x_points = 0;
 var x_liens = 0;
 var rail_lst = new Array();
 var rail_nbr = 78;
-var image_nbr = -1; // nombre d'images charg�es
 
 f_init_rail();
 
@@ -19,7 +18,6 @@ function f_add_link(id, lng) {
     rail_lst[id] = true;
     f_info_actu(lng, +1);
   }
-
 }
 
 function f_cleanup(vis) {
@@ -42,22 +40,24 @@ function f_cleanup(vis) {
         rail_lst[id] = false;
       }
     }
-    f_info_actu(0, 0);
+
+    x_longeur = 0;
+    x_points = 0;
+    x_liens = 0;
+
+    f_refresh_simulation_stats_ui();
   }
 }
 
 function f_info_actu(lng, sig) {
-  if (sig == 0) {
-    // Intitialisation
-    x_longeur = 0;
-    x_points = 0;
-    x_liens = 0;
-  } else {
-    // Incr�ment
-    x_longeur = x_longeur + sig * lng;
-    x_points = x_points + sig * f_donne_points(lng);
-    x_liens = x_liens + sig;
-  }
+  x_longeur = x_longeur + sig * lng;
+  x_points = x_points + sig * f_donne_points(lng);
+  x_liens = x_liens + sig;
+
+  f_refresh_simulation_stats_ui();
+}
+
+function f_refresh_simulation_stats_ui() {
   document.getElementById('txt_longueur').value = x_longeur;
   document.getElementById('txt_points').value = x_points;
   document.getElementById('txt_liens').value = x_liens;
