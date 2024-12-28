@@ -7,7 +7,6 @@ var rail_nbr = 78;
 f_init_rail();
 
 function f_add_link(id, lng) {
-
   var rail_obj = document.getElementById('rail_' + id);
   if (rail_obj.style.visibility == 'visible') {
     rail_obj.style.visibility = 'hidden';
@@ -20,33 +19,19 @@ function f_add_link(id, lng) {
   }
 }
 
-function f_cleanup(vis) {
-  if (vis) {
-    /* fonctionne mais ne calcule pas les points !
-    // Tout visible
-    for (var id in rail_lst) {
-      if (!rail_lst[id]) {
-        document.getElementById('rail_'+id).style.visibility = 'visible';
-        rail_lst[id] = true;
-      }
+function f_cleanup() {
+  for (var id in rail_lst) {
+    if (rail_lst[id]) {
+      document.getElementById('rail_' + id).style.visibility = 'hidden';
+      rail_lst[id] = false;
     }
-    */
-    window.alert('Impossible pour l\'instant.');
-  } else {
-    // Tout invisible
-    for (var id in rail_lst) {
-      if (rail_lst[id]) {
-        document.getElementById('rail_' + id).style.visibility = 'hidden';
-        rail_lst[id] = false;
-      }
-    }
-
-    x_longeur = 0;
-    x_points = 0;
-    x_liens = 0;
-
-    f_refresh_simulation_stats_ui();
   }
+
+  x_longeur = 0;
+  x_points = 0;
+  x_liens = 0;
+
+  f_refresh_simulation_stats_ui();
 }
 
 function f_info_actu(lng, sig) {
