@@ -48,14 +48,17 @@ function f_refresh_simulation_stats_ui() {
   document.getElementById('txt_liens').value = x_liens;
 }
 
+const length_points_mapping = {
+  1: 1,
+  2: 2,
+  3: 4,
+  4: 7,
+  5: 10,
+  6: 15,
+}
+
 function f_donne_points(lng) {
-  if (lng == 1) return 1;
-  if (lng == 2) return 2;
-  if (lng == 3) return 4;
-  if (lng == 4) return 7;
-  if (lng == 5) return 10;
-  if (lng == 6) return 15;
-  return 0;
+  return length_points_mapping[lng]
 }
 
 function f_init_rail() {
