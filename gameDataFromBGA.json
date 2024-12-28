@@ -11,6 +11,24 @@
       "6": "Black",
       "7": "Red",
       "8": "Green"
+    },
+    "dimensions": {
+        "x": {
+            "max_bga": 1701,
+            "up": "is boston/ comment",
+            "max_simulations": "448px",
+            "below": "is SF/ comment",
+            "min_bga": 69,
+            "min_simulations": "21px"
+        },
+        "y": {
+            "max_bga": 1025,
+            "up": "is Miami/ comment",
+            "max_simulations": "273px",
+            "below": "is montreal/ comment",
+            "min_bga_sf": 90,
+            "min_simulations": "25px"
+        }
     }
   },
   "cities": {
