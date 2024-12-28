@@ -6,167 +6,18 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Aventuriers du rail - simulations with Choosen mod</title>
-	<style>
-		body,
-		td,
-		th {
-			font-family: Verdana, Arial, Helvetica, sans-serif;
-			font-size: 11px;
-		}
-
-		#carte {
-			position: absolute;
-			left: 25px;
-			top: 112px;
-			width: 512px;
-			height: 347px;
-			z-index: 1;
-		}
-
-		#panneau {
-			position: absolute;
-			left: 539px;
-			top: 100px;
-			width: 171px;
-			height: 232px;
-			z-index: 2;
-		}
-
-		#Layer3 {
-			position: absolute;
-			left: 142px;
-			top: 89px;
-			width: 11px;
-			height: 7px;
-			z-index: 3;
-			background-color: #FF0000;
-		}
-
-		.txt-info {
-			border: 1px solid #999999;
-			background-color: #FFFFCC;
-			text-align: center;
-			width: 50px;
-			height: 16px;
-		}
-
-		.rail {
-			position: absolute;
-			visibility: hidden;
-			z-index: 11;
-		}
-
-		#info {
-			position: absolute;
-			left: 24px;
-			top: 80px;
-			width: 501px;
-			height: 22px;
-			z-index: 3;
-		}
-	</style>
-
-	<script>
-
-		var x_longeur = 0;
-		var x_points = 0;
-		var x_liens = 0;
-		var rail_lst = new Array();
-		var rail_nbr = 78;
-		var image_nbr = -1; // nombre d'images charg�es
-
-		f_init_rail();
-
-		function f_ajout_lien(id, lng) {
-
-			var rail_obj = document.getElementById('rail_' + id);
-			if (rail_obj.style.visibility == 'visible') {
-				rail_obj.style.visibility = 'hidden';
-				rail_lst[id] = false;
-				f_info_actu(lng, -1);
-			} else {
-				rail_obj.style.visibility = 'visible';
-				rail_lst[id] = true;
-				f_info_actu(lng, +1);
-			}
-
-		}
-
-		function f_actualise_tout(vis) {
-			if (vis) {
-				/* fonctionne mais ne calcule pas les points !
-				// Tout visible
-				for (var id in rail_lst) {
-					if (!rail_lst[id]) {
-						document.getElementById('rail_'+id).style.visibility = 'visible';
-						rail_lst[id] = true;
-					}
-				}
-				*/
-				window.alert('Impossible pour l\'instant.');
-			} else {
-				// Tout invisible
-				for (var id in rail_lst) {
-					if (rail_lst[id]) {
-						document.getElementById('rail_' + id).style.visibility = 'hidden';
-						rail_lst[id] = false;
-					}
-				}
-				f_info_actu(0, 0);
-			}
-		}
-
-		function f_info_actu(lng, sig) {
-			if (sig == 0) {
-				// Intitialisation
-				x_longeur = 0;
-				x_points = 0;
-				x_liens = 0;
-			} else {
-				// Incr�ment
-				x_longeur = x_longeur + sig * lng;
-				x_points = x_points + sig * f_donne_points(lng);
-				x_liens = x_liens + sig;
-			}
-			document.getElementById('txt_longueur').value = x_longeur;
-			document.getElementById('txt_points').value = x_points;
-			document.getElementById('txt_liens').value = x_liens;
-		}
-
-		function f_donne_points(lng) {
-			if (lng == 1) return 1;
-			if (lng == 2) return 2;
-			if (lng == 3) return 4;
-			if (lng == 4) return 7;
-			if (lng == 5) return 10;
-			if (lng == 6) return 15;
-			return 0;
-		}
-
-		function f_init_rail() {
-			var i = 0;
-			var id = '';
-			for (i = 1; i <= rail_nbr; i++) {
-				// Formatage de l'id
-				id = '' + i;
-				if (i < 10) id = '0' + id;
-				// Cr�ation de l'item � cl� de type cha�ne
-				rail_lst[id] = false;
-			}
-		}
-
-	</script>
+	<title>TTR simulations Choosen mod</title>
+	<link rel="stylesheet" type="text/css" href="./TTRsimulations_files/styling.css">
+	<script type="text/javascript" src="./TTRsimulations_files/calculations.js"> </script>
 </head>
 
 <body>
-
 	<!-- ZONE PANEAU UTILISATEUR -->
 	<div id="panneau">
 		<table>
 			<tbody>
 				<tr>
-					<td>Liaisons/Connections</td>
+					<td>Liaisons/Links</td>
 					<td><input name="txt_liens" type="text" class="txt-info" id="txt_liens"></td>
 				</tr>
 				<tr>
@@ -180,10 +31,11 @@
 			</tbody>
 		</table>
 		<br>
-		<input name="btn_effacer" type="submit" id="btn_effacer" value="Tout effacer/refresh" onclick="f_actualise_tout(false)">
+		<input name="btn_effacer" type="submit" id="btn_effacer" value="Tout effacer/refresh"
+			onclick="f_actualise_tout(false)">
 		<br>
 		<br>
-		Stat liaisons/train car points
+		Stat liaisons/Links points
 		<br>
 		<table border="1" cellpadding="2" cellspacing="0">
 			<tbody>
@@ -232,7 +84,6 @@
 			</tbody>
 		</table>
 	</div>
-
 
 	<!-- ZONE CARTE -->
 	<div id="carte">
@@ -504,10 +355,6 @@
 					href="javascript:f_ajout_lien(&#39;78&#39;,4);">
 			</map>
 		</div>
-
-
 	</div>
-
 </body>
-
 </html>
