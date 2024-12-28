@@ -7,7 +7,7 @@ var image_nbr = -1; // nombre d'images charg�es
 
 f_init_rail();
 
-function f_ajout_lien(id, lng) {
+function f_add_link(id, lng) {
 
   var rail_obj = document.getElementById('rail_' + id);
   if (rail_obj.style.visibility == 'visible') {
@@ -22,7 +22,7 @@ function f_ajout_lien(id, lng) {
 
 }
 
-function f_actualise_tout(vis) {
+function f_cleanup(vis) {
   if (vis) {
     /* fonctionne mais ne calcule pas les points !
     // Tout visible

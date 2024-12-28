@@ -269,9 +269,7 @@
                 "angle": 3,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "2": {
         "id": 2,
@@ -310,9 +308,7 @@
                 "angle": 51,
                 "top": true
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "3": {
         "id": 3,
@@ -327,9 +323,7 @@
                 "angle": 35,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "4": {
         "id": 4,
@@ -362,9 +356,7 @@
                 "angle": 319,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "5": {
         "id": 5,
@@ -397,9 +389,7 @@
                 "angle": 319,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "6": {
         "id": 6,
@@ -420,9 +410,7 @@
                 "angle": -41,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "7": {
         "id": 7,
@@ -443,9 +431,7 @@
                 "angle": -41,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "8": {
         "id": 8,
@@ -466,9 +452,7 @@
                 "angle": 40,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "9": {
         "id": 9,
@@ -489,9 +473,7 @@
                 "angle": 40,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "10": {
         "id": 10,
@@ -512,9 +494,7 @@
                 "angle": 122,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "11": {
         "id": 11,
@@ -535,9 +515,7 @@
                 "angle": 122,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "12": {
         "id": 12,
@@ -570,9 +548,7 @@
                 "angle": -63,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "13": {
         "id": 13,
@@ -599,9 +575,7 @@
                 "angle": -6,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "14": {
         "id": 14,
@@ -646,9 +620,7 @@
                 "angle": 25,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "15": {
         "id": 15,
@@ -681,9 +653,7 @@
                 "angle": 59,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "16": {
         "id": 16,
@@ -704,9 +674,7 @@
                 "angle": -65,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "17": {
         "id": 17,
@@ -733,9 +701,7 @@
                 "angle": 14,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "18": {
         "id": 18,
@@ -768,9 +734,7 @@
                 "angle": 8,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "19": {
         "id": 19,
@@ -797,9 +761,7 @@
                 "angle": 3,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "20": {
         "id": 20,
@@ -826,9 +788,7 @@
                 "angle": 3,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "21": {
         "id": 21,
@@ -849,9 +809,7 @@
                 "angle": -57,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "22": {
         "id": 22,
@@ -872,9 +830,7 @@
                 "angle": -57,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "23": {
         "id": 23,
@@ -907,9 +863,7 @@
                 "angle": -39,
                 "top": true
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "24": {
         "id": 24,
@@ -942,9 +896,7 @@
                 "angle": 351,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "25": {
         "id": 25,
@@ -959,9 +911,7 @@
                 "angle": 49,
                 "top": true
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "26": {
         "id": 26,
@@ -976,9 +926,7 @@
                 "angle": 49,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "27": {
         "id": 27,
@@ -999,9 +947,7 @@
                 "angle": -55,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "28": {
         "id": 28,
@@ -1022,9 +968,7 @@
                 "angle": -97,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "29": {
         "id": 29,
@@ -1045,9 +989,7 @@
                 "angle": -97,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "30": {
         "id": 30,
@@ -1080,9 +1022,7 @@
                 "angle": 67,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "31": {
         "id": 31,
@@ -1115,9 +1055,7 @@
                 "angle": -23,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "32": {
         "id": 32,
@@ -1150,9 +1088,7 @@
                 "angle": -23,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "33": {
         "id": 33,
@@ -1185,9 +1121,7 @@
                 "angle": 184,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "34": {
         "id": 34,
@@ -1220,9 +1154,7 @@
                 "angle": -12,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "35": {
         "id": 35,
@@ -1261,9 +1193,7 @@
                 "angle": -20,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "36": {
         "id": 36,
@@ -1290,9 +1220,7 @@
                 "angle": 11,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "37": {
         "id": 37,
@@ -1319,9 +1247,7 @@
                 "angle": 11,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "38": {
         "id": 38,
@@ -1366,9 +1292,7 @@
                 "angle": -1,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "39": {
         "id": 39,
@@ -1389,9 +1313,7 @@
                 "angle": -68,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "40": {
         "id": 40,
@@ -1412,9 +1334,7 @@
                 "angle": -68,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "41": {
         "id": 41,
@@ -1441,9 +1361,7 @@
                 "angle": -23,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "42": {
         "id": 42,
@@ -1488,9 +1406,7 @@
                 "angle": -8,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "43": {
         "id": 43,
@@ -1523,9 +1439,7 @@
                 "angle": 44,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "44": {
         "id": 44,
@@ -1570,9 +1484,7 @@
                 "angle": -19,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "45": {
         "id": 45,
@@ -1617,9 +1529,7 @@
                 "angle": -14,
                 "top": true
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "46": {
         "id": 46,
@@ -1658,9 +1568,7 @@
                 "angle": 305,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "47": {
         "id": 47,
@@ -1687,9 +1595,7 @@
                 "angle": 16,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "48": {
         "id": 48,
@@ -1710,9 +1616,7 @@
                 "angle": 273,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "49": {
         "id": 49,
@@ -1751,9 +1655,7 @@
                 "angle": 22,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "50": {
         "id": 50,
@@ -1780,9 +1682,7 @@
                 "angle": -59,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "51": {
         "id": 51,
@@ -1827,9 +1727,7 @@
                 "angle": 12,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "52": {
         "id": 52,
@@ -1862,9 +1760,7 @@
                 "angle": -47,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "53": {
         "id": 53,
@@ -1885,9 +1781,7 @@
                 "angle": 352,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "54": {
         "id": 54,
@@ -1908,9 +1802,7 @@
                 "angle": -74,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "55": {
         "id": 55,
@@ -1931,9 +1823,7 @@
                 "angle": -74,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "56": {
         "id": 56,
@@ -1948,9 +1838,7 @@
                 "angle": -115,
                 "top": true
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "57": {
         "id": 57,
@@ -1965,9 +1853,7 @@
                 "angle": -115,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "58": {
         "id": 58,
@@ -1988,9 +1874,7 @@
                 "angle": -1,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "59": {
         "id": 59,
@@ -2011,9 +1895,7 @@
                 "angle": -1,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "60": {
         "id": 60,
@@ -2034,9 +1916,7 @@
                 "angle": -12,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "61": {
         "id": 61,
@@ -2063,9 +1943,7 @@
                 "angle": -81,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "62": {
         "id": 62,
@@ -2092,9 +1970,7 @@
                 "angle": -41,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "63": {
         "id": 63,
@@ -2121,9 +1997,7 @@
                 "angle": 63,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "64": {
         "id": 64,
@@ -2144,9 +2018,7 @@
                 "angle": -2,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "65": {
         "id": 65,
@@ -2167,9 +2039,7 @@
                 "angle": -75,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "66": {
         "id": 66,
@@ -2196,9 +2066,7 @@
                 "angle": 13,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "67": {
         "id": 67,
@@ -2225,9 +2093,7 @@
                 "angle": -134,
                 "top": true
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "68": {
         "id": 68,
@@ -2254,9 +2120,7 @@
                 "angle": -134,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "69": {
         "id": 69,
@@ -2301,9 +2165,7 @@
                 "angle": 330,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "70": {
         "id": 70,
@@ -2330,9 +2192,7 @@
                 "angle": 80,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "71": {
         "id": 71,
@@ -2371,9 +2231,7 @@
                 "angle": 0,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "72": {
         "id": 72,
@@ -2400,9 +2258,7 @@
                 "angle": -23,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "73": {
         "id": 73,
@@ -2435,9 +2291,7 @@
                 "angle": -56,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "74": {
         "id": 74,
@@ -2464,9 +2318,7 @@
                 "angle": 4,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "75": {
         "id": 75,
@@ -2487,9 +2339,7 @@
                 "angle": 17,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "76": {
         "id": 76,
@@ -2510,9 +2360,7 @@
                 "angle": -31,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "77": {
         "id": 77,
@@ -2533,9 +2381,7 @@
                 "angle": -31,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "78": {
         "id": 78,
@@ -2556,9 +2402,7 @@
                 "angle": 87,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "79": {
         "id": 79,
@@ -2579,9 +2423,7 @@
                 "angle": 87,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "80": {
         "id": 80,
@@ -2608,9 +2450,7 @@
                 "angle": -7,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "81": {
         "id": 81,
@@ -2637,9 +2477,7 @@
                 "angle": -23,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "82": {
         "id": 82,
@@ -2660,9 +2498,7 @@
                 "angle": 77,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "83": {
         "id": 83,
@@ -2701,9 +2537,7 @@
                 "angle": -30,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "84": {
         "id": 84,
@@ -2724,9 +2558,7 @@
                 "angle": -93,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "85": {
         "id": 85,
@@ -2747,9 +2579,7 @@
                 "angle": 28,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "86": {
         "id": 86,
@@ -2794,9 +2624,7 @@
                 "angle": 61,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "87": {
         "id": 87,
@@ -2835,9 +2663,7 @@
                 "angle": 73,
                 "top": true
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "88": {
         "id": 88,
@@ -2876,9 +2702,7 @@
                 "angle": 73,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "89": {
         "id": 89,
@@ -2893,9 +2717,7 @@
                 "angle": 112,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "90": {
         "id": 90,
@@ -2910,9 +2732,7 @@
                 "angle": 112,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "91": {
         "id": 91,
@@ -2933,9 +2753,7 @@
                 "angle": -50,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "92": {
         "id": 92,
@@ -2956,9 +2774,7 @@
                 "angle": -50,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "93": {
         "id": 93,
@@ -2997,9 +2813,7 @@
                 "angle": -18,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "94": {
         "id": 94,
@@ -3038,9 +2852,7 @@
                 "angle": -18,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "95": {
         "id": 95,
@@ -3061,9 +2873,7 @@
                 "angle": 11,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "96": {
         "id": 96,
@@ -3108,9 +2918,7 @@
                 "angle": 12,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "97": {
         "id": 97,
@@ -3125,9 +2933,7 @@
                 "angle": 89,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "98": {
         "id": 98,
@@ -3142,9 +2948,7 @@
                 "angle": 89,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "99": {
         "id": 99,
@@ -3165,9 +2969,7 @@
                 "angle": 273,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     },
     "100": {
         "id": 100,
@@ -3200,9 +3002,7 @@
                 "angle": 50,
                 "top": false
             }
-        ],
-        "tunnel": false,
-        "locomotives": 0
+        ]
     }
   }
 }
