@@ -2,6 +2,18 @@ var x_longeur = 0;
 var x_points = 0;
 var x_liens = 0;
 var rail_lst = new Array();
+const used_colors = {
+  'combined': 0,
+  '0': 0,
+  '1': 0,
+  '2': 0,
+  '3': 0,
+  '4': 0,
+  '5': 0,
+  '6': 0,
+  '7': 0,
+  '8': 0
+}
 const rail_nbr = 78;
 
 f_init_rail();
