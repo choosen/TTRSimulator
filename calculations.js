@@ -2,7 +2,7 @@ var x_longeur = 0;
 var x_points = 0;
 var x_liens = 0;
 var rail_lst = new Array();
-var rail_nbr = 78;
+const rail_nbr = 78;
 
 f_init_rail();
 
