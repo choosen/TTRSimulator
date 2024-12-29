@@ -417,10 +417,10 @@ function f_toggle_link(id, _lng) {
   var rail_obj = document.getElementById('rail_' + id);
   if (rail_obj.style.visibility == 'visible') {
     rail_obj.style.visibility = 'hidden';
-    f_info_actu(link_data[id].length, -1);
+    f_info_actu(id, -1);
   } else {
     rail_obj.style.visibility = 'visible';
-    f_info_actu(link_data[id].length, +1);
+    f_info_actu(id, +1);
   }
   f_refresh_simulation_stats_ui();
 }
@@ -438,12 +438,6 @@ function f_refresh_simulation_stats_ui() {
 
 //#region Logic
 
-function f_info_actu(lng, sig) {
-  x_longeur = x_longeur + sig * lng;
-  x_points = x_points + sig * f_donne_points(lng);
-  x_liens = x_liens + sig;
-}
-
 const length_points_mapping = {
   1: 1,
   2: 2,
@@ -453,8 +447,14 @@ const length_points_mapping = {
   6: 15,
 }
 
-function f_donne_points(lng) {
-  return length_points_mapping[lng]
+function f_info_actu(id, sig) {
+  var link = link_data[id]
+
+  // link.colors
+
+  x_longeur = x_longeur + sig * link.length;
+  x_points = x_points + sig * length_points_mapping[link.length];
+  x_liens = x_liens + sig;
 }
 
 //#endregion
