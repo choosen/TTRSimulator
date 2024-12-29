@@ -19,7 +19,7 @@ const used_colors = {
   "18": 0, // Pink/Green
   "25": 0, // White/Orange
   "28": 0, // White/Green
-  "45": 0, // 45 means 4 or 5, so Yellow/Orange
+  "45": 0, // Yellow/Orange   45 means 4 or 5, so
   "47": 0, // Yellow/Red
   "56": 0 // Orange/Black
 }
@@ -442,11 +442,8 @@ function f_refresh_simulation_stats_ui() {
   document.getElementById('txt_liens').value = x_liens;
 
   Object.keys(used_colors).forEach(key => {
-    if (key.length == 1) {
-      document.getElementById('usedColors' + key).innerHTML = used_colors[key]
-    }
+    document.getElementById('usedColors' + key).innerHTML = used_colors[key]
   });
-  // console.log(used_colors);
 }
 //#endregion
 
