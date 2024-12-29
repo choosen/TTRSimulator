@@ -1,22 +1,21 @@
+//#region start data
+
 var x_longeur = 0;
 var x_points = 0;
 var x_liens = 0;
-var rail_lst = new Array();
-const used_colors = {
-  'combined': 0,
-  '0': 0,
-  '1': 0,
-  '2': 0,
-  '3': 0,
-  '4': 0,
-  '5': 0,
-  '6': 0,
-  '7': 0,
-  '8': 0
-}
-const rail_nbr = 78;
 
-f_init_rail();
+const used_colors = {
+  'combined': 0, // 45 means 4 or 5
+  '0': 0, // everything
+  '1': 0, // "Pink"
+  '2': 0, // "White"
+  '3': 0, // "Blue"
+  '4': 0, // "Yellow"
+  '5': 0, // "Orange"
+  '6': 0, // "Black"
+  '7': 0, // "Red"
+  '8': 0 // "Green"
+}
 
 const link_data = {
   "01": {
@@ -30,7 +29,7 @@ const link_data = {
     "length": 3
   },
   "03": {
-    "colors": "52",
+    "colors": "25",
     "cities": "Salt Lake City-San Francisco",
     "length": 5
   },
@@ -195,17 +194,17 @@ const link_data = {
     "length": 2
   },
   "36": {
-    "colors": "74",
+    "colors": "47",
     "cities": "Boston-New York",
     "length": 2
   },
   "37": {
-    "colors": "65",
+    "colors": "56",
     "cities": "New York-Washington",
     "length": 2
   },
   "38": {
-    "colors": "82",
+    "colors": "28",
     "cities": "New York-Pittsburgh",
     "length": 2
   },
@@ -300,7 +299,7 @@ const link_data = {
     "length": 3
   },
   "57": {
-    "colors": "65",
+    "colors": "56",
     "cities": "Chicago-Pittsburgh",
     "length": 3
   },
@@ -315,7 +314,7 @@ const link_data = {
     "length": 2
   },
   "60": {
-    "colors": "41",
+    "colors": "14",
     "cities": "Los Angeles-San Francisco",
     "length": 3
   },
@@ -395,7 +394,7 @@ const link_data = {
     "length": 4
   },
   "76": {
-    "colors": "81",
+    "colors": "18",
     "cities": "Portland-San Francisco",
     "length": 5
   },
@@ -410,47 +409,39 @@ const link_data = {
     "length": 4
   }
 }
+//#endregion
+
+//#region UI action
 
 function f_toggle_link(id, _lng) {
   var rail_obj = document.getElementById('rail_' + id);
   if (rail_obj.style.visibility == 'visible') {
     rail_obj.style.visibility = 'hidden';
-    rail_lst[id] = false;
     f_info_actu(link_data[id].length, -1);
   } else {
     rail_obj.style.visibility = 'visible';
-    rail_lst[id] = true;
     f_info_actu(link_data[id].length, +1);
   }
+  f_refresh_simulation_stats_ui();
 }
 
 function f_cleanup() {
-  for (var id in rail_lst) {
-    if (rail_lst[id]) {
-      document.getElementById('rail_' + id).style.visibility = 'hidden';
-      rail_lst[id] = false;
-    }
-  }
-
-  x_longeur = 0;
-  x_points = 0;
-  x_liens = 0;
-
-  f_refresh_simulation_stats_ui();
-}
-
-function f_info_actu(lng, sig) {
-  x_longeur = x_longeur + sig * lng;
-  x_points = x_points + sig * f_donne_points(lng);
-  x_liens = x_liens + sig;
-
-  f_refresh_simulation_stats_ui();
+  window.location.reload();
 }
 
 function f_refresh_simulation_stats_ui() {
   document.getElementById('txt_longueur').value = x_longeur;
   document.getElementById('txt_points').value = x_points;
   document.getElementById('txt_liens').value = x_liens;
+}
+//#endregion
+
+//#region Logic
+
+function f_info_actu(lng, sig) {
+  x_longeur = x_longeur + sig * lng;
+  x_points = x_points + sig * f_donne_points(lng);
+  x_liens = x_liens + sig;
 }
 
 const length_points_mapping = {
@@ -466,14 +457,4 @@ function f_donne_points(lng) {
   return length_points_mapping[lng]
 }
 
-function f_init_rail() {
-  var i = 0;
-  var id = '';
-  for (i = 1; i <= rail_nbr; i++) {
-    // Formatage de l'id
-    id = '' + i;
-    if (i < 10) id = '0' + id;
-    // Cr�ation de l'item � cl� de type cha�ne
-    rail_lst[id] = false;
-  }
-}
+//#endregion
