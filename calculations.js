@@ -14,14 +14,14 @@ const used_colors = {
   '6': 0, // "Black"
   '7': 0, // "Red"
   '8': 0, // "Green"
-  "13": 0,
-  "14": 0,
-  "18": 0,
-  "25": 0,
-  "28": 0,
+  "13": 0, // Pink/Blue
+  "14": 0, // Pink/Yellow
+  "18": 0, // Pink/Green
+  "25": 0, // White/Orange
+  "28": 0, // White/Green
   "45": 0, // 45 means 4 or 5, so Yellow/Orange
-  "47": 0,
-  "56": 0
+  "47": 0, // Yellow/Red
+  "56": 0 // Orange/Black
 }
 
 const link_data = {
@@ -261,8 +261,8 @@ const link_data = {
     "length": 2
   },
   "48": {
-    "colors": "28",
-    "cities": "New York-Pittsburgh",
+    "colors": "0",
+    "cities": "Toronto-Pittsburgh",
     "length": 2
   },
   "49": {
@@ -440,7 +440,13 @@ function f_refresh_simulation_stats_ui() {
   document.getElementById('txt_longueur').value = x_longeur;
   document.getElementById('txt_points').value = x_points;
   document.getElementById('txt_liens').value = x_liens;
-  console.log(used_colors);
+
+  Object.keys(used_colors).forEach(key => {
+    if (key.length == 1) {
+      document.getElementById('usedColors' + key).innerHTML = used_colors[key]
+    }
+  });
+  // console.log(used_colors);
 }
 //#endregion
 
