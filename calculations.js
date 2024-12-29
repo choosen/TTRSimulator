@@ -5,7 +5,16 @@ var x_points = 0;
 var x_liens = 0;
 
 const used_colors = {
-  'combined': 0, // 45 means 4 or 5
+  'combined': {
+    "13": 0,
+    "14": 0,
+    "18": 0,
+    "25": 0,
+    "28": 0,
+    "45": 0, // 45 means 4 or 5, so Yellow/Orange
+    "47": 0,
+    "56": 0
+  },
   '0': 0, // everything
   '1': 0, // "Pink"
   '2': 0, // "White"
