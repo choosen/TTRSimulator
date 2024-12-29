@@ -442,7 +442,7 @@ function f_refresh_simulation_stats_ui() {
   document.getElementById('txt_liens').value = x_liens;
 
   Object.keys(used_colors).forEach(key => {
-    document.getElementById('usedColors' + key).innerHTML = used_colors[key]
+    document.getElementById('usedColors' + key).innerHTML = used_colors[key] == 0 ? '' : used_colors[key]
   });
 }
 //#endregion
