@@ -19,7 +19,8 @@
             "max_simulations": "448px",
             "below": "is SF/ comment",
             "min_bga": 69,
-            "min_simulations": "21px"
+            "min_simulations": "21px",
+            "scale": 3.8
         },
         "y": {
             "max_bga": 1025,
@@ -27,7 +28,8 @@
             "max_simulations": "273px",
             "below": "is montreal/ comment",
             "min_bga_sf": 90,
-            "min_simulations": "25px"
+            "min_simulations": "25px",
+            "scale": 3.8
         }
     }
   },
