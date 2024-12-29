@@ -37,7 +37,15 @@
 			border: 1px solid #999999;
 			background-color: #FFFFCC;
 			text-align: center;
-			width: 50px;
+			width: 25px;
+			height: 16px;
+		}
+
+		.txt-to-use {
+			border: 1px solid #999999;
+			background-color: #FFFFCC;
+			text-align: center;
+			width: 20px;
 			height: 16px;
 		}
 
