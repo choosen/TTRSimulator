@@ -36,92 +36,94 @@
 		<br>
 		Colors to be used
 		<br>
-		<table border="1" cellpadding="2" cellspacing="0">
-			<tbody>
-				<tr>
-					<th></th>
-					<th>Used</th>
-					<th>Your set</th>
-				</tr>
-				<tr>
-					<th>Any color</th>
-					<td id="usedColors0"></td>
-					<td><input name="txt_to_use_0" type="number" min="0" max="14" class="txt-to-use" id="txt_to_use_0" autofocus></td>
-				</tr>
-				<tr>
-					<th bgcolor="pink">Pink</th>
-					<td id="usedColors1"></td>
-					<td><input name="txt_to_use_1" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_1"></td>
-				</tr>
-				<tr>
-					<th bgcolor="white">White</th>
-					<td id="usedColors2"></td>
-					<td><input name="txt_to_use_2" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_2"></td>
-				</tr>
-				<tr>
-					<th bgcolor="dodgerblue" style="color: white;">Blue</th>
-					<td id="usedColors3"></td>
-					<td><input name="txt_to_use_3" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_3"></td>
-				</tr>
-				<tr>
-					<th bgcolor="yellow">Yellow</th>
-					<td id="usedColors4"></td>
-					<td><input name="txt_to_use_4" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_4"></td>
-				</tr>
-				<tr>
-					<th bgcolor="orange">Orange</th>
-					<td id="usedColors5"></td>
-					<td><input name="txt_to_use_5" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_5"></td>
-				</tr>
-				<tr>
-					<th bgcolor="black" style="color: white;">Black</th>
-					<td id="usedColors6"></td>
-					<td><input name="txt_to_use_6" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_6"></td>
-				</tr>
-				<tr>
-					<th bgcolor="red" style="color: white;">Red</th>
-					<td id="usedColors7"></td>
-					<td><input name="txt_to_use_7" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_7"></td>
-				</tr>
-				<tr>
-					<th bgcolor="palegreen">Green</th>
-					<td id="usedColors8"></td>
-					<td><input name="txt_to_use_8" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_8"></td>
-				</tr>
-				<tr>
-					<th bgcolor="Pink">Pink/Blue</th>
-					<td id="usedColors13"></td>
-				</tr>
-				<tr>
-					<th bgcolor="Pink">Pink/Yellow</th>
-					<td id="usedColors14"></td>
-				</tr>
-				<tr>
-					<th bgcolor="Pink">Pink/Green</th>
-					<td id="usedColors18"></td>
-				</tr>
-				<tr>
-					<th bgcolor="White">White/Orange</th>
-					<td id="usedColors25"></td>
-				</tr>
-				<tr>
-					<th bgcolor="White">White/Green</th>
-					<td id="usedColors28"></td>
-				</tr>
-				<tr>
-					<th bgcolor="Yellow">Yellow/Orange</th>
-					<td id="usedColors45"></td>
-				</tr>
-				<tr>
-					<th bgcolor="Yellow">Yellow/Red</th>
-					<td id="usedColors47"></td>
-				</tr>
-				<tr>
-					<th bgcolor="Orange">Orange/Black</th>
-					<td id="usedColors56"></td>
-				</tr>
-			</tbody>
-		</table>
+		<form name="usedColorsForm">
+			<table border="1" cellpadding="2" cellspacing="0">
+				<tbody>
+					<tr>
+						<th></th>
+						<th>Used</th>
+						<th>Your set</th>
+					</tr>
+					<tr>
+						<th>Any color</th>
+						<td id="usedColors0"></td>
+						<td><input name="txt_to_use_0" type="number" min="0" max="14" class="txt-to-use" id="txt_to_use_0" autofocus></td>
+					</tr>
+					<tr>
+						<th bgcolor="pink">Pink</th>
+						<td id="usedColors1"></td>
+						<td><input name="txt_to_use_1" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_1"></td>
+					</tr>
+					<tr>
+						<th bgcolor="white">White</th>
+						<td id="usedColors2"></td>
+						<td><input name="txt_to_use_2" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_2"></td>
+					</tr>
+					<tr>
+						<th bgcolor="dodgerblue" style="color: white;">Blue</th>
+						<td id="usedColors3"></td>
+						<td><input name="txt_to_use_3" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_3"></td>
+					</tr>
+					<tr>
+						<th bgcolor="yellow">Yellow</th>
+						<td id="usedColors4"></td>
+						<td><input name="txt_to_use_4" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_4"></td>
+					</tr>
+					<tr>
+						<th bgcolor="orange">Orange</th>
+						<td id="usedColors5"></td>
+						<td><input name="txt_to_use_5" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_5"></td>
+					</tr>
+					<tr>
+						<th bgcolor="black" style="color: white;">Black</th>
+						<td id="usedColors6"></td>
+						<td><input name="txt_to_use_6" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_6"></td>
+					</tr>
+					<tr>
+						<th bgcolor="red" style="color: white;">Red</th>
+						<td id="usedColors7"></td>
+						<td><input name="txt_to_use_7" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_7"></td>
+					</tr>
+					<tr>
+						<th bgcolor="palegreen">Green</th>
+						<td id="usedColors8"></td>
+						<td><input name="txt_to_use_8" type="number" min="0" max="12" class="txt-to-use" id="txt_to_use_8"></td>
+					</tr>
+					<tr>
+						<th bgcolor="Pink">Pink/Blue</th>
+						<td id="usedColors13"></td>
+					</tr>
+					<tr>
+						<th bgcolor="Pink">Pink/Yellow</th>
+						<td id="usedColors14"></td>
+					</tr>
+					<tr>
+						<th bgcolor="Pink">Pink/Green</th>
+						<td id="usedColors18"></td>
+					</tr>
+					<tr>
+						<th bgcolor="White">White/Orange</th>
+						<td id="usedColors25"></td>
+					</tr>
+					<tr>
+						<th bgcolor="White">White/Green</th>
+						<td id="usedColors28"></td>
+					</tr>
+					<tr>
+						<th bgcolor="Yellow">Yellow/Orange</th>
+						<td id="usedColors45"></td>
+					</tr>
+					<tr>
+						<th bgcolor="Yellow">Yellow/Red</th>
+						<td id="usedColors47"></td>
+					</tr>
+					<tr>
+						<th bgcolor="Orange">Orange/Black</th>
+						<td id="usedColors56"></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
 		<br>
 		<br>
 		Stat liaisons/Links points
