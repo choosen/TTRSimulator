@@ -5,16 +5,6 @@ var x_points = 0;
 var x_liens = 0;
 
 const used_colors = {
-  'combined': {
-    "13": 0,
-    "14": 0,
-    "18": 0,
-    "25": 0,
-    "28": 0,
-    "45": 0, // 45 means 4 or 5, so Yellow/Orange
-    "47": 0,
-    "56": 0
-  },
   '0': 0, // everything
   '1': 0, // "Pink"
   '2': 0, // "White"
@@ -23,7 +13,15 @@ const used_colors = {
   '5': 0, // "Orange"
   '6': 0, // "Black"
   '7': 0, // "Red"
-  '8': 0 // "Green"
+  '8': 0, // "Green"
+  "13": 0,
+  "14": 0,
+  "18": 0,
+  "25": 0,
+  "28": 0,
+  "45": 0, // 45 means 4 or 5, so Yellow/Orange
+  "47": 0,
+  "56": 0
 }
 
 const link_data = {
@@ -442,6 +440,7 @@ function f_refresh_simulation_stats_ui() {
   document.getElementById('txt_longueur').value = x_longeur;
   document.getElementById('txt_points').value = x_points;
   document.getElementById('txt_liens').value = x_liens;
+  console.log(used_colors);
 }
 //#endregion
 
@@ -459,11 +458,11 @@ const length_points_mapping = {
 function f_info_actu(id, sig) {
   var link = link_data[id]
 
-  // link.colors
+  used_colors[link.colors] += sig * link.length
 
-  x_longeur = x_longeur + sig * link.length;
-  x_points = x_points + sig * length_points_mapping[link.length];
-  x_liens = x_liens + sig;
+  x_longeur += sig * link.length;
+  x_points += sig * length_points_mapping[link.length];
+  x_liens += sig;
 }
 
 //#endregion
