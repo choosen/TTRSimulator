@@ -3,6 +3,7 @@
 var x_longeur = 0;
 var x_points = 0;
 var x_liens = 0;
+var x_planned_vs_set_status = 'OK'
 
 const used_colors = {
   '0': 0, // everything
@@ -432,8 +433,16 @@ function f_toggle_link(id, _lng) {
   f_refresh_simulation_stats_ui();
 }
 
+const f_fetch_used_colors_from_ui = () => {
+  const to_use_inputs = document.forms.usedColorsForm.querySelectorAll('input')
+  to_use_inputs.forEach(({ name, value }) => {
+    unified_name = name.replace('txt_to_use_', '')
+    to_use_colors[unified_name] = parseInt(value || 0)
+  });
+}
+
 function f_cleanup() {
-  window.location.reload();
+  window.location.reload(); // would be good to clean it up to store last input to be used
 }
 
 function f_refresh_simulation_stats_ui() {
@@ -444,7 +453,10 @@ function f_refresh_simulation_stats_ui() {
   Object.keys(used_colors).forEach(key => {
     document.getElementById('usedColors' + key).innerHTML = used_colors[key] == 0 ? '' : used_colors[key]
   });
+
+  document.getElementById('txt_to_use_colors_status').value = x_planned_vs_set_status;
 }
+
 //#endregion
 
 //#region Logic
@@ -466,6 +478,26 @@ function f_info_actu(id, sig) {
   x_longeur += sig * link.length;
   x_points += sig * length_points_mapping[link.length];
   x_liens += sig;
+  f_estimate_needed_colors();
+}
+
+const to_use_colors = {
+  '0': 0, // everything
+  '1': 0, // "Pink"
+  '2': 0, // "White"
+  '3': 0, // "Blue"
+  '4': 0, // "Yellow"
+  '5': 0, // "Orange"
+  '6': 0, // "Black"
+  '7': 0, // "Red"
+  '8': 0, // "Green"
+}
+
+const f_estimate_needed_colors = () => {
+  console.log(to_use_colors);
+  // TODO: calculate if it is possible to make the route
+  x_planned_vs_set_status = 'OK'
+  x_planned_vs_set_status = 'BAD'
 }
 
 //#endregion
