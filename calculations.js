@@ -494,10 +494,38 @@ const to_use_colors = {
 }
 
 const f_estimate_needed_colors = () => {
-  console.log(to_use_colors);
-  // TODO: calculate if it is possible to make the route
+  const whole_cards_number = Object.values(to_use_colors).reduce((sum, x) => sum + x, 0)
+  if (whole_cards_number < x_longeur) return x_planned_vs_set_status = 'TooLong'
+
+  let {'0': locomotives_to_use, ...rest} = to_use_colors
+  let simple_color_diffs = Object.fromEntries(Object.entries(rest).map(
+    ([color, set]) => [color, set - used_colors[color]]
+  ));
+  let needed_locos_for_color_link = [0, ...Object.values(simple_color_diffs)].reduce((sum, x) => x < 0 ? sum - x : sum)
+
+  locomotives_to_use -= needed_locos_for_color_link
+
+  if (locomotives_to_use < 0) return x_planned_vs_set_status = 'BAD'
+
+  let left_colors = Object.fromEntries(
+    Object.keys(simple_color_diffs).filter(
+      (key) => simple_color_diffs[key] > 0
+    ).map((key) => [key, simple_color_diffs[key]])
+  )
+
+  let colors_available_for_any_sum = Object.values(left_colors).reduce((sum, x) => sum + x, 0)
+
+  any_color_requested = used_colors['0']
+
+  // fast check, but I have to
+  // TODO: care about fiting the right color amount for each track
+  // cannot split 3 red + 1 white into two links 2x
+  if (colors_available_for_any_sum + locomotives_to_use < any_color_requested) return x_planned_vs_set_status = 'BAD'
+
+  if (colors_available_for_any_sum < any_color_requested) locomotives_to_use -= any_color_requested - colors_available_for_any_sum
+
+  // TODO: calculate if it is possible to make the combined route
   x_planned_vs_set_status = 'OK'
-  x_planned_vs_set_status = 'BAD'
 }
 
 //#endregion
