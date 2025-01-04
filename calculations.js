@@ -458,10 +458,9 @@ function f_refresh_simulation_stats_ui() {
 }
 
 function f_sync_ui_set_colors() {
-  Object.keys(to_use_colors).forEach(key => {
-    console.log('debug', key, to_use_colors[key], 'txt_to_use_' + key);
+  Object.keys(to_use_colors).forEach(key =>
     document.getElementById('txt_to_use_' + key).value = to_use_colors[key]
-  });
+  );
 }
 
 //#endregion
