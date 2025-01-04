@@ -457,6 +457,13 @@ function f_refresh_simulation_stats_ui() {
   document.getElementById('txt_to_use_colors_status').value = x_planned_vs_set_status;
 }
 
+function f_sync_ui_set_colors() {
+  Object.keys(to_use_colors).forEach(key => {
+    console.log('debug', key, to_use_colors[key], 'txt_to_use_' + key);
+    document.getElementById('txt_to_use_' + key).value = to_use_colors[key]
+  });
+}
+
 //#endregion
 
 //#region Logic
@@ -505,7 +512,7 @@ const f_estimate_needed_colors = () => {
 
   locomotives_to_use -= needed_locos_for_color_link
 
-  if (locomotives_to_use < 0) return x_planned_vs_set_status = 'BAD'
+  if (locomotives_to_use < 0) return x_planned_vs_set_status = 'BAD LOCOS'
 
   let left_colors = Object.fromEntries(
     Object.keys(simple_color_diffs).filter(
@@ -527,5 +534,21 @@ const f_estimate_needed_colors = () => {
   // TODO: calculate if it is possible to make the combined route
   x_planned_vs_set_status = 'OK'
 }
+
+const f_setup_example_colors_set = () => {
+  to_use_colors['0'] = 6
+  to_use_colors['1'] = 6
+  to_use_colors['2'] = 4
+  to_use_colors['3'] = 4
+  to_use_colors['4'] = 6
+  to_use_colors['5'] = 6
+  to_use_colors['6'] = 4
+  to_use_colors['7'] = 4
+  to_use_colors['8'] = 4
+  f_sync_ui_set_colors();
+};
+
+// wait for rendering UI to refresh it
+setTimeout(() => f_setup_example_colors_set(), 100);
 
 //#endregion
