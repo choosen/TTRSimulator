@@ -494,7 +494,7 @@ function f_info_actu(id, sig) {
   f_estimate_needed_colors();
 }
 
-const to_use_colors = {
+let to_use_colors = {
   '0': 0, // everything
   '1': 0, // "Pink"
   '2': 0, // "White"
@@ -541,6 +541,23 @@ const f_estimate_needed_colors = () => {
   x_planned_vs_set_status = 'OK'
 }
 
+const f_localstore_colors_set = () => {
+  localStorage.setItem(
+    "to_use_colors",
+    JSON.stringify(to_use_colors)
+  );
+}
+
+const f_init_colors_set = () => {
+  let stored_json = localStorage.getItem("to_use_colors") || '';
+
+  if (!stored_json) return f_setup_example_colors_set();
+
+  to_use_colors = JSON.parse(stored_json)
+
+  f_sync_ui_set_colors();
+}
+
 const f_setup_example_colors_set = () => {
   to_use_colors['0'] = 6
   to_use_colors['1'] = 6
@@ -551,12 +568,13 @@ const f_setup_example_colors_set = () => {
   to_use_colors['6'] = 4
   to_use_colors['7'] = 4
   to_use_colors['8'] = 4
+
   f_sync_ui_set_colors();
 };
 
 // wait for rendering UI to refresh it
 setTimeout(() => {
-  f_setup_example_colors_set();
+  f_init_colors_set()
   f_show_only_used_combined_colors();
 }, 50);
 
