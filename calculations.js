@@ -439,10 +439,13 @@ const f_fetch_used_colors_from_ui = () => {
     unified_name = name.replace('txt_to_use_', '')
     to_use_colors[unified_name] = parseInt(value || 0)
   });
+  f_refresh_set_sum();
+  f_estimate_needed_colors();
+  f_update_to_use_colors_status();
 }
 
 function f_cleanup() {
-  window.location.reload(); // would be good to clean it up to store last input to be used
+  window.location.reload();
 }
 
 function f_refresh_simulation_stats_ui() {
@@ -454,8 +457,13 @@ function f_refresh_simulation_stats_ui() {
     document.getElementById('usedColors' + key).innerHTML = used_colors[key] == 0 ? '' : used_colors[key]
   });
 
-  document.getElementById('txt_to_use_colors_status').value = x_planned_vs_set_status;
+  f_update_to_use_colors_status();
   f_show_only_used_combined_colors();
+  f_refresh_set_sum();
+}
+
+function f_update_to_use_colors_status() {
+  document.getElementById('txt_to_use_colors_status').value = x_planned_vs_set_status;
 }
 
 function f_show_only_used_combined_colors() {
@@ -469,6 +477,11 @@ function f_sync_ui_set_colors() {
     document.getElementById('txt_to_use_' + key).value = to_use_colors[key]
   );
 }
+
+function f_refresh_set_sum() {
+  const to_use_colors_sum = Object.values(to_use_colors).reduce((sum, x) => sum + x, 0)
+  document.getElementById('set_sum').innerHTML = to_use_colors_sum
+};
 
 //#endregion
 
@@ -576,6 +589,7 @@ const f_setup_example_colors_set = () => {
 setTimeout(() => {
   f_init_colors_set()
   f_show_only_used_combined_colors();
+  f_refresh_set_sum();
 }, 50);
 
 //#endregion

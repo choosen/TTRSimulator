@@ -37,17 +37,17 @@
 				</tr>
 			</tbody>
 		</table>
-		<button type="button" onclick="f_localstore_colors_set()">Save your setup</button>
 		<br>
-		Colors to be used
+		Cards helper
+		<button class="save-set-button" type="button" onclick="f_localstore_colors_set()">Save set</button>
 		<br>
 		<form name="usedColorsForm">
-			<table border="1" cellpadding="2" cellspacing="0">
+			<table border="1" cellpadding="1" cellspacing="0">
 				<tbody>
 					<tr>
 						<th>Used</th>
 						<th>Card type</th>
-						<th>Your set</th>
+						<th>Your set (<span id="set_sum">0</span>)</th>
 					</tr>
 					<tr>
 						<td id="usedColors0"></td>
