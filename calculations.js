@@ -455,6 +455,13 @@ function f_refresh_simulation_stats_ui() {
   });
 
   document.getElementById('txt_to_use_colors_status').value = x_planned_vs_set_status;
+  f_show_only_used_combined_colors();
+}
+
+function f_show_only_used_combined_colors() {
+  ['13', '14', '18', '25', '28', '45', '47', '56'].forEach((combined_color) =>
+    document.getElementById('usedColors' + combined_color).parentNode.style.display = used_colors[combined_color] === 0 ? 'none' : ''
+  )
 }
 
 function f_sync_ui_set_colors() {
@@ -548,6 +555,9 @@ const f_setup_example_colors_set = () => {
 };
 
 // wait for rendering UI to refresh it
-setTimeout(() => f_setup_example_colors_set(), 100);
+setTimeout(() => {
+  f_setup_example_colors_set();
+  f_show_only_used_combined_colors();
+}, 50);
 
 //#endregion
