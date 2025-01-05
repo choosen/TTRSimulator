@@ -48,3 +48,7 @@ th {
 	visibility: hidden;
 	z-index: 11;
 }
+
+th {
+	text-align: left;
+}
