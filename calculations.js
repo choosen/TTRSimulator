@@ -476,6 +476,7 @@ function f_sync_ui_set_colors() {
   Object.keys(to_use_colors).forEach(key =>
     document.getElementById('txt_to_use_' + key).value = to_use_colors[key]
   );
+  f_refresh_set_sum();
 }
 
 function f_refresh_set_sum() {
@@ -569,7 +570,19 @@ const f_init_colors_set = () => {
   to_use_colors = JSON.parse(stored_json)
 
   f_sync_ui_set_colors();
-}
+};
+
+document.addEventListener('paste', e=>{
+  let content = e.clipboardData.getData('text/plain');
+  content.split("\n").forEach((line, index) =>
+    to_use_colors[index.toString()] = parseInt(line)
+  );
+  f_sync_ui_set_colors();
+})
+
+const f_paste_color_set = () => {
+  alert('here we are:' + clipboardData);
+};
 
 const f_setup_example_colors_set = () => {
   to_use_colors['0'] = 6
@@ -589,7 +602,6 @@ const f_setup_example_colors_set = () => {
 setTimeout(() => {
   f_init_colors_set()
   f_show_only_used_combined_colors();
-  f_refresh_set_sum();
 }, 50);
 
 //#endregion
