@@ -444,8 +444,9 @@ const f_fetch_used_colors_from_ui = () => {
   f_update_to_use_colors_status();
 }
 
-function f_cleanup() {
-  window.location.reload();
+function f_cleanup_routes() {
+  const new_search_params = new URLSearchParams(to_use_colors).toString();
+  window.location.search = `?${new_search_params}`;
 }
 
 function f_refresh_simulation_stats_ui() {
