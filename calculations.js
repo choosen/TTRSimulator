@@ -563,6 +563,10 @@ const f_localstore_colors_set = () => {
 }
 
 const f_init_colors_set = () => {
+  let searchParams = new URLSearchParams(window.location.search);
+
+  if (searchParams.keys().toArray().length > 0) return f_setup_from_url_params(searchParams)
+
   let stored_json = localStorage.getItem("to_use_colors") || '';
 
   if (!stored_json) return f_setup_example_colors_set();
@@ -571,6 +575,20 @@ const f_init_colors_set = () => {
 
   f_sync_ui_set_colors();
 };
+
+const f_setup_from_url_params = (searchParams) => {
+  to_use_colors['0'] = parseInt(searchParams.get('0') || '0');
+  to_use_colors['1'] = parseInt(searchParams.get('1') || '0');
+  to_use_colors['2'] = parseInt(searchParams.get('2') || '0');
+  to_use_colors['3'] = parseInt(searchParams.get('3') || '0');
+  to_use_colors['4'] = parseInt(searchParams.get('4') || '0');
+  to_use_colors['5'] = parseInt(searchParams.get('5') || '0');
+  to_use_colors['6'] = parseInt(searchParams.get('6') || '0');
+  to_use_colors['7'] = parseInt(searchParams.get('7') || '0');
+  to_use_colors['8'] = parseInt(searchParams.get('8') || '0');
+
+  f_sync_ui_set_colors();
+}
 
 document.addEventListener('paste', e=>{
   let content = e.clipboardData.getData('text/plain');

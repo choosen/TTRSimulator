@@ -6,7 +6,9 @@ Most recent version:
 `TODO.list` has my future ideas.
 
 You can enter your full setup 
-by leaving color inputs and paste numbers values in new lines.
+by leaving color inputs (example: shift+tab) and paste numbers values in new lines.
+
+You can pass query params also to init colors with them, ex: TTRsimulations.html?0=10&1=12
 
 Hit setup to open new window with same color set. 
 By default there is 44 seed with 6 locos and 6/4 per colors
