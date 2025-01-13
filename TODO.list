@@ -3,4 +3,3 @@
 - care about fiting the right color amount for each track. cannot split 3 red + 1 white into two links 2x
 - calculate if it is possible to make the combined routes also [not supported in status check]
 - shareable selected tracks with url params, to not pass screenshots anymore :D
-- host it on my github to have live demo
