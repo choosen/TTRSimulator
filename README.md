@@ -1,7 +1,6 @@
 TicketToRide Simulator edited by choosen
 
-Most recent version:
-|![screenshot](example.png)
+[Most recent version online](https://choosen.github.io/ttr2/TTRsimulations)
 
 `TODO.list` has my future ideas.
 
