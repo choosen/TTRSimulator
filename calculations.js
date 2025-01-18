@@ -531,6 +531,8 @@ let to_use_colors = {
   '8': 0, // "Green"
 }
 
+//#region estimating colors capacity
+
 const f_estimate_needed_colors = () => {
   const whole_cards_number = Object.values(to_use_colors).reduce((sum, x) => sum + x, 0)
   if (whole_cards_number < x_longeur) return x_planned_vs_set_status = 'TooLong'
@@ -557,17 +559,16 @@ const f_estimate_needed_colors = () => {
 
   any_color_requested = used_colors['0']
 
-                    // fast pre-check
-                    if (colors_available_for_any_sum + locomotives_to_use < any_color_requested) return x_planned_vs_set_status = 'BAD'
-
-                    if (colors_available_for_any_sum < any_color_requested) locomotives_to_use -= any_color_requested - colors_available_for_any_sum
+  // fast pre-check
+  if (colors_available_for_any_sum + locomotives_to_use < any_color_requested) return x_planned_vs_set_status = 'BAD'
 
   // REAL VALIDATION
   // cannot split 3 red + 1 white into two links 2x
-  // TODO: any kind routes are missing to pass
-  // verifyAnyTracksWithColors(colors, routes)
-
-  x_planned_vs_set_status = 'OK'
+  const any_routes = Array.from(selected_tracks).filter(id => link_data[id]['colors'] == '0').map(id => link_data[id]['length'])
+  if (verifyAnyTracksWithColors(Object.values(left_colors), any_routes))
+    x_planned_vs_set_status = 'OK'
+  else
+    x_planned_vs_set_status = 'ANY FAILED'
 }
 
 // Helper functions
@@ -643,6 +644,8 @@ function reduceIdeals(colorValues, routes) {
     }
   }
 }
+
+//#endregion
 
 const f_localstore_colors_set = () => {
   localStorage.setItem(
