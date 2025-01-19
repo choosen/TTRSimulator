@@ -27,6 +27,8 @@ const used_colors = {
   "56": 0 // Orange/Black
 }
 
+const combined_colors_labels = ['13', '14', '18', '25', '28', '45', '47', '56']
+
 const link_data = {
   "01": {
     "colors": "5",
@@ -475,7 +477,7 @@ function f_update_to_use_colors_status() {
 }
 
 function f_show_only_used_combined_colors() {
-  ['13', '14', '18', '25', '28', '45', '47', '56'].forEach((combined_color) =>
+  combined_colors_labels.forEach((combined_color) =>
     document.getElementById('usedColors' + combined_color).parentNode.style.display = used_colors[combined_color] === 0 ? 'none' : ''
   )
 }
@@ -565,10 +567,11 @@ const f_estimate_needed_colors = () => {
   // REAL VALIDATION
   // cannot split 3 red + 1 white into two links 2x
   const any_routes = Array.from(selected_tracks).filter(id => link_data[id]['colors'] == '0').map(id => link_data[id]['length'])
-  if (verifyAnyTracksWithColors(left_colors, any_routes, locomotives_to_use))
-    x_planned_vs_set_status = 'OK'
-  else
-    x_planned_vs_set_status = 'ANY FAILED'
+  if (!verifyAnyTracksWithColors(left_colors, any_routes, locomotives_to_use)) return x_planned_vs_set_status = 'ANY FAILED'
+
+  if (combined_colors_labels.some(id => used_colors[id] || 0 > 0)) return x_planned_vs_set_status = '? OK, BUT MULTICOLOR NOT SUPPORTED YET'
+
+  x_planned_vs_set_status = 'OK'
 }
 
 // Helper functions
