@@ -535,14 +535,61 @@ let to_use_colors = {
 
 //#region estimating colors capacity
 
+function generateCombinedColorsPermutations(arrays) {
+  if (arrays.length === 0) return [];
+
+  // Use reduce to accumulate combinations
+  return arrays.reduce((acc, currentArray) => {
+      return acc.flatMap(accElement =>
+          currentArray.map(currentElement =>
+              [...accElement, currentElement]
+          )
+      );
+  }, [[]]);
+}
+
 const f_estimate_needed_colors = () => {
   const whole_cards_number = Object.values(to_use_colors).reduce((sum, x) => sum + x, 0)
   if (whole_cards_number < x_longeur) return x_planned_vs_set_status = 'TooLong'
 
-  // TODO: calculate if it is possible to make the combined routes
+  let {'0': locomotives_to_use, ...to_use_only_colors} = to_use_colors;
 
-  let {'0': locomotives_to_use, ...rest} = to_use_colors
-  let simple_color_diffs = Object.fromEntries(Object.entries(rest).map(
+  if (combined_colors_labels.every(id => (used_colors[id] || 0) === 0)) return f_validate_needed_colors(to_use_only_colors, locomotives_to_use);
+
+  let combined_color_tracks_with_length = combined_colors_labels.flatMap(
+    (combined_colors) => Array.from(selected_tracks).filter(
+      (id) => link_data[id].colors == combined_colors
+    ).map(
+      (id) => { return { [`${combined_colors}`]: link_data[id].length }}
+    )
+  );
+  console.log(combined_color_tracks_with_length);
+
+  return generateCombinedColorsPermutations(
+    Object.keys(combined_color_tracks_with_length).map(
+      (combined_label) => combined_label.split('')
+    )
+    ).some((selected_colors_a, index) => {
+      const to_use_only_colors_twicked_with_multi = { ...to_use_only_colors };
+
+      console.log('debug')
+      console.log(selected_colors_a);
+      console.log(to_use_only_colors_twicked_with_multi);
+      console.log(combined_color_tracks_with_length);
+      selected_colors_a.forEach(
+        (color) => to_use_only_colors_twicked_with_multi[color] = (to_use_only_colors_twicked_with_multi[color] || 0) +  Object.values(combined_color_tracks_with_length[index])
+      )
+
+      console.log('After changes:')
+      console.log(selected_colors_a);
+      console.log(to_use_only_colors_twicked_with_multi);
+      f_validate_needed_colors(to_use_only_colors_twicked_with_multi, locomotives_to_use)
+    })
+}
+
+
+const f_validate_needed_colors = (to_use_only_colors, locomotives_to_use) => {
+  let simple_color_diffs = Object.fromEntries(Object.entries(to_use_only_colors).map(
     ([color, set]) => [color, set - used_colors[color]]
   ));
   let needed_locos_for_color_link = [0, ...Object.values(simple_color_diffs)].reduce((sum, x) => x < 0 ? sum - x : sum)
@@ -569,7 +616,7 @@ const f_estimate_needed_colors = () => {
   const any_routes = Array.from(selected_tracks).filter(id => link_data[id]['colors'] == '0').map(id => link_data[id]['length'])
   if (!verifyAnyTracksWithColors(left_colors, any_routes, locomotives_to_use)) return x_planned_vs_set_status = 'ANY FAILED'
 
-  if (combined_colors_labels.some(id => used_colors[id] || 0 > 0)) return x_planned_vs_set_status = '? OK, BUT MULTICOLOR NOT SUPPORTED YET'
+  // if (combined_colors_labels.some(id => (used_colors[id] || 0) > 0)) return x_planned_vs_set_status = '? OK, BUT MULTICOLOR NOT SUPPORTED YET'
 
   x_planned_vs_set_status = 'OK'
 }
