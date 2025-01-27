@@ -651,6 +651,9 @@ function verifyAnyTracksWithColors(colors, routes, locomotives_to_use) {
   return verifyColorsAndLocos(colorValues.sort((a, b) => b - a), routes.sort((a, b) => b - a), locomotives_to_use);
 }
 
+// test example:
+// file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=65,49,09&0=0&1=0&2=0&3=0&4=0&5=5&6=0&7=4&8=0
+
 function verifyColorsAndLocos(colorValues, routes, locos) {
   reduceIdeals(colorValues, routes);
   const [currentMax, ...otherColors] = colorValues;
@@ -666,6 +669,8 @@ function verifyColorsAndLocos(colorValues, routes, locos) {
     .sort((a, b) => b.length - a.length)
     .some((partColors) => {
       const newColors = [...partColors, ...otherColors].sort((a, b) => b - a);
+      if (newColors.filter(p => p === 1).length > 5) return false
+
       return verifyColorsAndLocos(newColors, [...routes], locos);
     });
 
