@@ -563,7 +563,6 @@ const f_estimate_needed_colors = () => {
       (id) => { return { [`${combined_colors}`]: link_data[id].length }}
     )
   );
-  console.log('combined_color_tracks_with_length', combined_color_tracks_with_length);
 
   return generateCombinedColorsPermutations(
     Object.values(combined_color_tracks_with_length).flatMap(values => Object.keys(values)).map(
@@ -572,25 +571,13 @@ const f_estimate_needed_colors = () => {
     ).some((selected_colors_a, index) => {
       const to_use_only_colors_twicked_with_multi = { ...to_use_only_colors };
 
-      console.log('debug')
-      console.log('selected_colors_a', selected_colors_a);
-      console.log('to_use_only_colors_twicked_with_multi', to_use_only_colors_twicked_with_multi);
-      console.log('combined_color_tracks_with_length', combined_color_tracks_with_length);
       selected_colors_a.forEach(
-        (color) => {
-          console.log('color from iteration on selected_colors_a', color);
-          to_use_only_colors_twicked_with_multi[color] =
-            (parseInt(to_use_only_colors_twicked_with_multi[color] || 0)) +  parseInt(Object.values(combined_color_tracks_with_length)[index])
-        }
+        (color) => to_use_only_colors_twicked_with_multi[color] =
+          (parseInt(to_use_only_colors_twicked_with_multi[color] || 0)) +  parseInt(Object.values(combined_color_tracks_with_length)[index])
       )
-
-      console.log('After changes:')
-      console.log('selected_colors_a', selected_colors_a);
-      console.log('to_use_only_colors_twicked_with_multi', to_use_only_colors_twicked_with_multi);
       f_validate_needed_colors(to_use_only_colors_twicked_with_multi, locomotives_to_use)
     })
 }
-
 
 const f_validate_needed_colors = (to_use_only_colors, locomotives_to_use) => {
   let simple_color_diffs = Object.fromEntries(Object.entries(to_use_only_colors).map(
@@ -619,8 +606,6 @@ const f_validate_needed_colors = (to_use_only_colors, locomotives_to_use) => {
   // cannot split 3 red + 1 white into two links 2x
   const any_routes = Array.from(selected_tracks).filter(id => link_data[id]['colors'] == '0').map(id => link_data[id]['length'])
   if (!verifyAnyTracksWithColors(left_colors, any_routes, locomotives_to_use)) return x_planned_vs_set_status = 'ANY FAILED'
-
-  // if (combined_colors_labels.some(id => (used_colors[id] || 0) > 0)) return x_planned_vs_set_status = '? OK, BUT MULTICOLOR NOT SUPPORTED YET'
 
   x_planned_vs_set_status = 'OK'
 }

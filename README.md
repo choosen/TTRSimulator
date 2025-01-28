@@ -18,8 +18,5 @@ Click `Save set` button to store default initial setup
 
 By default there is 44 seed with 6 locos and 6/4 per colors
 
-BUGS:
-1. OK STATUS is not checking at all dual colors tracks, it displays then `? .. ` message
-
 Initial version
 |![screenshot](https://github.com/user-attachments/assets/fdb40635-2ffd-4e86-8e83-3cdd9951f226)
