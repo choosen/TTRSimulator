@@ -563,26 +563,30 @@ const f_estimate_needed_colors = () => {
       (id) => { return { [`${combined_colors}`]: link_data[id].length }}
     )
   );
-  console.log(combined_color_tracks_with_length);
+  console.log('combined_color_tracks_with_length', combined_color_tracks_with_length);
 
   return generateCombinedColorsPermutations(
-    Object.keys(combined_color_tracks_with_length).map(
+    Object.values(combined_color_tracks_with_length).flatMap(values => Object.keys(values)).map(
       (combined_label) => combined_label.split('')
     )
     ).some((selected_colors_a, index) => {
       const to_use_only_colors_twicked_with_multi = { ...to_use_only_colors };
 
       console.log('debug')
-      console.log(selected_colors_a);
-      console.log(to_use_only_colors_twicked_with_multi);
-      console.log(combined_color_tracks_with_length);
+      console.log('selected_colors_a', selected_colors_a);
+      console.log('to_use_only_colors_twicked_with_multi', to_use_only_colors_twicked_with_multi);
+      console.log('combined_color_tracks_with_length', combined_color_tracks_with_length);
       selected_colors_a.forEach(
-        (color) => to_use_only_colors_twicked_with_multi[color] = (to_use_only_colors_twicked_with_multi[color] || 0) +  Object.values(combined_color_tracks_with_length[index])
+        (color) => {
+          console.log('color from iteration on selected_colors_a', color);
+          to_use_only_colors_twicked_with_multi[color] =
+            (parseInt(to_use_only_colors_twicked_with_multi[color] || 0)) +  parseInt(Object.values(combined_color_tracks_with_length)[index])
+        }
       )
 
       console.log('After changes:')
-      console.log(selected_colors_a);
-      console.log(to_use_only_colors_twicked_with_multi);
+      console.log('selected_colors_a', selected_colors_a);
+      console.log('to_use_only_colors_twicked_with_multi', to_use_only_colors_twicked_with_multi);
       f_validate_needed_colors(to_use_only_colors_twicked_with_multi, locomotives_to_use)
     })
 }
@@ -652,14 +656,14 @@ function verifyAnyTracksWithColors(colors, routes, locomotives_to_use) {
 }
 
 // test example:
-// file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=65,49,09&0=0&1=0&2=0&3=0&4=0&5=5&6=0&7=4&8=0
+// file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=65,49,77&0=0&1=0&2=0&3=0&4=0&5=5&6=0&7=4&8=0
+// file://Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=76,02,41,37,03,65,57,40,38,67,60,36,09,39&0=7&1=6&2=4&3=2&4=7&5=5&6=4&7=6&8=4
 
 function verifyColorsAndLocos(colorValues, routes, locos) {
   reduceIdeals(colorValues, routes);
-  const [currentMax, ...otherColors] = colorValues;
-
   if (routes.length === 0) return true;
 
+  const [currentMax, ...otherColors] = colorValues;
   if (currentMax === undefined) {
     if (locos === 0) return false;
     return verifyColorsAndLocos([locos], [...routes], 0);
