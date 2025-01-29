@@ -458,6 +458,30 @@ function f_copy_link() {
   navigator.clipboard.writeText(`${document.location.origin}/${window.location.pathname}?${new_search_params}`)
 }
 
+// let left_colors; // To reflect used cards for color tracks and locos there
+// let last_locos_to_use = 0;
+function f_refresh_left_colors_ui() {
+  if (x_planned_vs_set_status !== 'OK') return f_cleanup_left_colors_ui();
+
+  document.getElementById('leftColors0').innerHTML = last_locos_to_use // == 0 ? '' : last_locos_to_use
+
+  Object.keys(used_colors).forEach(key => {
+    if ([...combined_colors_labels, '0'].includes(key)) return;
+
+    document.getElementById('leftColors' + key).innerHTML = left_colors[key] || 0 // == 0 ? '' : left_colors[key]
+  });
+}
+
+function f_cleanup_left_colors_ui() {
+  document.getElementById('leftColors0').innerHTML = '-'
+
+  Object.keys(used_colors).forEach(key => {
+    if ([...combined_colors_labels, '0'].includes(key)) return;
+
+    document.getElementById('leftColors' + key).innerHTML = '-'
+  });
+}
+
 function f_refresh_simulation_stats_ui() {
   document.getElementById('txt_longueur').value = x_longeur;
   document.getElementById('txt_points').value = x_points;
@@ -470,6 +494,7 @@ function f_refresh_simulation_stats_ui() {
   f_update_to_use_colors_status();
   f_show_only_used_combined_colors();
   f_refresh_set_sum();
+  f_refresh_left_colors_ui();
 }
 
 function f_update_to_use_colors_status() {
@@ -576,8 +601,11 @@ const f_estimate_needed_colors = () => {
           (parseInt(to_use_only_colors_twicked_with_multi[color] || 0)) +  parseInt(Object.values(combined_color_tracks_with_length)[index])
       )
       f_validate_needed_colors(to_use_only_colors_twicked_with_multi, locomotives_to_use)
-    })
+    });
 }
+
+let left_colors = {}; // To reflect used cards for color tracks and locos there
+let last_locos_to_use = 0;
 
 const f_validate_needed_colors = (to_use_only_colors, locomotives_to_use) => {
   let simple_color_diffs = Object.fromEntries(Object.entries(to_use_only_colors).map(
@@ -589,7 +617,8 @@ const f_validate_needed_colors = (to_use_only_colors, locomotives_to_use) => {
 
   if (locomotives_to_use < 0) return x_planned_vs_set_status = 'BAD LOCOS'
 
-  let left_colors = Object.fromEntries(
+  last_locos_to_use = locomotives_to_use
+  left_colors = Object.fromEntries(
     Object.keys(simple_color_diffs).filter(
       (key) => simple_color_diffs[key] > 0
     ).map((key) => [key, simple_color_diffs[key]])
@@ -769,6 +798,7 @@ setTimeout(() => {
   f_init_colors_set()
   f_init_selected_tracks();
   f_show_only_used_combined_colors();
+  f_refresh_left_colors_ui();
 }, 50);
 
 //#endregion
