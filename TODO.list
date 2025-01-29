@@ -2,3 +2,5 @@
   - indicate clipboard option to setup [only in readme for now..]
 - spin of this project: interactive map of tickets (cities or highliting shortest path)
 - list completed tracks (for opps moves analysis)
+- choose color on double color routes (My idea is to do it in Helper only, to make faster the route planning experience itself)
+  - add ''remaining'' column to helper
