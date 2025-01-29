@@ -18,5 +18,9 @@ Click `Save set` button to store default initial setup
 
 By default there is 44 seed with 6 locos and 6/4 per colors
 
+## Bugs
+
+- multi color routes sometimes does not work well with color validations
+
 Initial version
 |![screenshot](https://github.com/user-attachments/assets/fdb40635-2ffd-4e86-8e83-3cdd9951f226)
