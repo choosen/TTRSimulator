@@ -458,17 +458,15 @@ function f_copy_link() {
   navigator.clipboard.writeText(`${document.location.origin}/${window.location.pathname}?${new_search_params}`)
 }
 
-// let left_colors; // To reflect used cards for color tracks and locos there
-// let last_locos_to_use = 0;
 function f_refresh_left_colors_ui() {
   if (x_planned_vs_set_status !== 'OK') return f_cleanup_left_colors_ui();
 
-  document.getElementById('leftColors0').innerHTML = last_locos_to_use // == 0 ? '' : last_locos_to_use
+  document.getElementById('leftColors0').innerHTML = last_locos_to_use
 
   Object.keys(used_colors).forEach(key => {
     if ([...combined_colors_labels, '0'].includes(key)) return;
 
-    document.getElementById('leftColors' + key).innerHTML = left_colors[key] || 0 // == 0 ? '' : left_colors[key]
+    document.getElementById('leftColors' + key).innerHTML = left_colors[key] || 0
   });
 }
 
@@ -573,6 +571,9 @@ function generateCombinedColorsPermutations(arrays) {
   }, [[]]);
 }
 
+// bug example of multi color route status:
+// file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=12,01,16,10,78,11,66,76&0=7&1=5&2=4&3=2&4=7&5=5&6=4&7=6&8=4
+
 const f_estimate_needed_colors = () => {
   const whole_cards_number = Object.values(to_use_colors).reduce((sum, x) => sum + x, 0)
   if (whole_cards_number < x_longeur) return x_planned_vs_set_status = 'TooLong'
@@ -674,14 +675,17 @@ function verifyAnyTracksWithColors(colors, routes, locomotives_to_use) {
 // file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=76,02,41,37,03,65,57,40,38,67,60,36,09,39&0=7&1=6&2=4&3=2&4=7&5=5&6=4&7=6&8=4
 
 function verifyColorsAndLocos(colorValues, routes, locos) {
+  last_locos_to_use = locos;
   reduceIdeals(colorValues, routes);
   if (routes.length === 0) return true;
 
-  const [currentMax, ...otherColors] = colorValues;
-  if (currentMax === undefined) {
+  if (!colorValues.length) {
     if (locos === 0) return false;
+
     return verifyColorsAndLocos([locos], [...routes], 0);
   }
+
+  const [currentMax, ...otherColors] = colorValues;
 
   const validParts = selectPossibleParts(jsPartitionIntoParts(currentMax), [...routes])
     .sort((a, b) => b.length - a.length)
@@ -696,6 +700,7 @@ function verifyColorsAndLocos(colorValues, routes, locos) {
 
   if (locos > 0) {
     const newColors = [currentMax + 1, ...otherColors];
+    last_locos_to_use -= 1
     return verifyColorsAndLocos(newColors, [...routes], locos - 1);
   }
 
