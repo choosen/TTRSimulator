@@ -658,7 +658,7 @@ function verifyColorsAndLocos(colorValues, routes, locos) {
     .sort((a, b) => b.length - a.length)
     .some((partColors) => {
       const newColors = [...partColors, ...otherColors].sort((a, b) => b - a);
-      if (newColors.filter(p => p === 1).length > 5) return false
+      // if (newColors.filter(p => p === 1).length > 5) return false // it seems to be reasonable, but slows down
 
       return verifyColorsAndLocos(newColors, [...routes], locos);
     });
