@@ -425,14 +425,14 @@ const link_data = {
 
 //#region UI action
 
-function f_toggle_link(id, _lng) {
+function f_toggle_link(id, _lng, skipVerification = false) {
   var rail_obj = document.getElementById('rail_' + id);
   if (rail_obj.style.visibility == 'visible') {
     rail_obj.style.visibility = 'hidden';
-    f_info_actu(id, -1);
+    f_info_actu(id, -1, skipVerification);
   } else {
     rail_obj.style.visibility = 'visible';
-    f_info_actu(id, +1);
+    f_info_actu(id, +1, skipVerification);
   }
   f_refresh_simulation_stats_ui();
 }
@@ -507,7 +507,7 @@ const length_points_mapping = {
   6: 15,
 }
 
-function f_info_actu(id, sig) {
+function f_info_actu(id, sig, skipVerification = false) {
   var link = link_data[id]
 
   used_colors[link.colors] += sig * link.length
@@ -518,7 +518,7 @@ function f_info_actu(id, sig) {
   x_longeur += sig * link.length;
   x_points += sig * length_points_mapping[link.length];
   x_liens += sig;
-  f_estimate_needed_colors();
+  if (!skipVerification) f_estimate_needed_colors();
 }
 
 let to_use_colors = {
@@ -705,7 +705,8 @@ const f_init_selected_tracks = () => {
 
   if (selected_tracks.has('')) return selected_tracks = new Set([]);
 
-  selected_tracks.forEach((id) => f_toggle_link(id, 0));
+  selected_tracks.forEach((id) => f_toggle_link(id, 0, true));
+  f_estimate_needed_colors(); // Estimate manually after finishing selecting tracks to do it faster
 }
 
 const f_init_colors_set = () => {
