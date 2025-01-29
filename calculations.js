@@ -574,7 +574,7 @@ function generateCombinedColorsPermutations(arrays) {
 }
 
 // bug example of multi color route status:
-// file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=12,01,16,10,78,11,66,76&0=7&1=5&2=4&3=2&4=7&5=5&6=4&7=6&8=4
+// file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=66,11,76,16&0=6&1=5&2=0&3=0&4=0&5=0&6=0&7=4&8=4
 
 let multi_colors_mode = false;
 
