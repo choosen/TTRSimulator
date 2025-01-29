@@ -810,7 +810,7 @@ setTimeout(() => {
   f_init_selected_tracks();
   f_show_only_used_combined_colors();
   f_refresh_left_colors_ui();
-  f_update_to_use_colors_status()
+  f_update_to_use_colors_status();
 }, 50);
 
 //#endregion
