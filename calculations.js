@@ -642,7 +642,7 @@ function verifyAnyTracksWithColors(colors, routes, locomotives_to_use) {
 
 // test example:
 // file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=65,49,77&0=0&1=0&2=0&3=0&4=0&5=5&6=0&7=4&8=0
-// file://Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=76,02,41,37,03,65,57,40,38,67,60,36,09,39&0=7&1=6&2=4&3=2&4=7&5=5&6=4&7=6&8=4
+// file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=76,02,41,37,03,65,57,40,38,67,60,36,09,39&0=7&1=6&2=4&3=2&4=7&5=5&6=4&7=6&8=4
 
 function verifyColorsAndLocos(colorValues, routes, locos) {
   reduceIdeals(colorValues, routes);
