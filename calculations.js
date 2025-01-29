@@ -496,6 +496,8 @@ function f_refresh_simulation_stats_ui() {
 }
 
 function f_update_to_use_colors_status() {
+  if (multi_colors_mode) return document.getElementById('txt_to_use_colors_status').value = '? Buggy multicolors' + x_planned_vs_set_status;
+
   document.getElementById('txt_to_use_colors_status').value = x_planned_vs_set_status;
 }
 
@@ -574,13 +576,17 @@ function generateCombinedColorsPermutations(arrays) {
 // bug example of multi color route status:
 // file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=12,01,16,10,78,11,66,76&0=7&1=5&2=4&3=2&4=7&5=5&6=4&7=6&8=4
 
+let multi_colors_mode = false;
+
 const f_estimate_needed_colors = () => {
   const whole_cards_number = Object.values(to_use_colors).reduce((sum, x) => sum + x, 0)
   if (whole_cards_number < x_longeur) return x_planned_vs_set_status = 'TooLong'
 
   let {'0': locomotives_to_use, ...to_use_only_colors} = to_use_colors;
 
+  multi_colors_mode = false;
   if (combined_colors_labels.every(id => (used_colors[id] || 0) === 0)) return f_validate_needed_colors(to_use_only_colors, locomotives_to_use);
+  multi_colors_mode = true;
 
   let combined_color_tracks_with_length = combined_colors_labels.flatMap(
     (combined_colors) => Array.from(selected_tracks).filter(
@@ -804,6 +810,7 @@ setTimeout(() => {
   f_init_selected_tracks();
   f_show_only_used_combined_colors();
   f_refresh_left_colors_ui();
+  f_update_to_use_colors_status()
 }, 50);
 
 //#endregion
