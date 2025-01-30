@@ -7,6 +7,9 @@ var x_planned_vs_set_status = 'OK'
 
 let selected_tracks = new Set([]);
 
+let left_colors = {}; // To reflect used cards for color tracks and locos there
+let last_locos_to_use = 0;
+
 const used_colors = {
   '0': 0, // everything
   '1': 0, // "Pink"
@@ -610,9 +613,6 @@ const f_estimate_needed_colors = () => {
       f_validate_needed_colors(to_use_only_colors_twicked_with_multi, locomotives_to_use)
     });
 }
-
-let left_colors = {}; // To reflect used cards for color tracks and locos there
-let last_locos_to_use = 0;
 
 const f_validate_needed_colors = (to_use_only_colors, locomotives_to_use) => {
   let simple_color_diffs = Object.fromEntries(Object.entries(to_use_only_colors).map(
