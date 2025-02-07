@@ -588,7 +588,7 @@ const f_estimate_needed_colors = () => {
   let {'0': locomotives_to_use, ...to_use_only_colors} = to_use_colors;
 
   multi_colors_mode = false;
-  if (combined_colors_labels.every(id => (used_colors[id] || 0) === 0)) return f_validate_needed_colors(to_use_only_colors, locomotives_to_use);
+  if (combined_colors_labels.every(id => (used_colors[id] || 0) === 0)) return f_validate_needed_colors(to_use_only_colors, locomotives_to_use, used_colors);
   multi_colors_mode = true;
 
   let combined_color_tracks_with_length = combined_colors_labels.flatMap(
@@ -603,20 +603,28 @@ const f_estimate_needed_colors = () => {
     Object.values(combined_color_tracks_with_length).flatMap(values => Object.keys(values)).map(
       (combined_label) => combined_label.split('')
     )
-    ).some((selected_colors_a, index) => {
-      const to_use_only_colors_twicked_with_multi = { ...to_use_only_colors };
+    ).some((selected_colors_a) => {
+      const manipulated_used_colors = { ...used_colors };
+
+      console.log('Color set before applying:', manipulated_used_colors , 'with:', selected_colors_a)
 
       selected_colors_a.forEach(
-        (color) => to_use_only_colors_twicked_with_multi[color] =
-          (parseInt(to_use_only_colors_twicked_with_multi[color] || 0)) +  parseInt(Object.values(combined_color_tracks_with_length)[index])
+        (color, index) => {
+          let val = manipulated_used_colors[color] +  Object.values(Object.values(combined_color_tracks_with_length)[index])[0];
+          console.log(val, index);
+          manipulated_used_colors[color] = val
+        }
       )
-      f_validate_needed_colors(to_use_only_colors_twicked_with_multi, locomotives_to_use)
+
+      console.log('Color set after applying:', manipulated_used_colors , '-- lets verify')
+
+      f_validate_needed_colors(to_use_only_colors, locomotives_to_use, manipulated_used_colors)
     });
 }
 
-const f_validate_needed_colors = (to_use_only_colors, locomotives_to_use) => {
+const f_validate_needed_colors = (to_use_only_colors, locomotives_to_use, manipulated_used_colors) => {
   let simple_color_diffs = Object.fromEntries(Object.entries(to_use_only_colors).map(
-    ([color, set]) => [color, set - used_colors[color]]
+    ([color, set]) => [color, set - manipulated_used_colors[color]]
   ));
   let needed_locos_for_color_link = [0, ...Object.values(simple_color_diffs)].reduce((sum, x) => x < 0 ? sum - x : sum)
 
@@ -633,7 +641,7 @@ const f_validate_needed_colors = (to_use_only_colors, locomotives_to_use) => {
 
   let colors_available_for_any_sum = Object.values(left_colors).reduce((sum, x) => sum + x, 0)
 
-  any_color_requested = used_colors['0']
+  any_color_requested = manipulated_used_colors['0']
 
   // fast pre-check
   if (colors_available_for_any_sum + locomotives_to_use < any_color_requested) return x_planned_vs_set_status = 'BAD'
@@ -677,6 +685,7 @@ function verifyAnyTracksWithColors(colors, routes, locomotives_to_use) {
 }
 
 // test example:
+// file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=11,76,16&0=2&1=5&2=0&3=0&4=0&5=0&6=0&7=4&8=4
 // file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=65,49,77&0=0&1=0&2=0&3=0&4=0&5=5&6=0&7=4&8=0
 // file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=76,02,41,37,03,65,57,40,38,67,60,36,09,39&0=7&1=6&2=4&3=2&4=7&5=5&6=4&7=6&8=4
 
@@ -697,7 +706,7 @@ function verifyColorsAndLocos(colorValues, routes, locos) {
     .sort((a, b) => b.length - a.length)
     .some((partColors) => {
       const newColors = [...partColors, ...otherColors].sort((a, b) => b - a);
-      // if (newColors.filter(p => p === 1).length > 5) return false // it seems to be reasonable, but slows down
+      if (newColors.filter(p => p === 1).length > 5) return false // it seems to be reasonable, but slows down
 
       return verifyColorsAndLocos(newColors, [...routes], locos);
     });
