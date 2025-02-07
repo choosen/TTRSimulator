@@ -43,6 +43,10 @@ th {
 	height: 16px;
 }
 
+.multiColorBtn {
+	font-size: xx-small;
+}
+
 .rail {
 	position: absolute;
 	visibility: hidden;

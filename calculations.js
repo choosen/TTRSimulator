@@ -740,6 +740,10 @@ function reduceIdeals(colorValues, routes) {
   }
 }
 
+const f_select_multiple_color = () => {
+  // TODO
+}
+
 //#endregion
 
 const f_localstore_colors_set = () => {
