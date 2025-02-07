@@ -610,17 +610,10 @@ const f_estimate_needed_colors = () => {
     ).some((selected_colors_a) => {
       const manipulated_used_colors = { ...used_colors };
 
-      // console.log('Color set before applying:', manipulated_used_colors , 'with:', selected_colors_a)
-
-      selected_colors_a.forEach(
-        (color, index) => {
-          let val = manipulated_used_colors[color] +  Object.values(Object.values(combined_color_tracks_with_length)[index])[0];
-          // console.log(val, index);
-          manipulated_used_colors[color] = val
-        }
+      selected_colors_a.forEach((color, index) =>
+        manipulated_used_colors[color] =
+          manipulated_used_colors[color] +  Object.values(Object.values(combined_color_tracks_with_length)[index])[0]
       )
-
-      console.log('Color set after applying:', manipulated_used_colors , '-- lets verify')
 
       f_validate_needed_colors(to_use_only_colors, locomotives_to_use, manipulated_used_colors);
 
