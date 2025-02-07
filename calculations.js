@@ -475,13 +475,11 @@ function f_refresh_left_colors_ui() {
     if ([...combined_colors_labels, '0'].includes(key)) return;
 
     // I decided to show just simple diff, without applying 1 possible solution of multiple multiColor tracks
-    if (multiColorUsed) {
-      document.getElementById('leftColors' + key).innerHTML = left_colors[key] || 0
-      document.getElementById('multiColorInfo').innerHTML = "if combined color track in use then Locomotive number can be suboptimal"
-    } else {
-      document.getElementById('leftColors' + key).innerHTML = to_use_colors[key] - used_colors[key];
-      document.getElementById('multiColorInfo').innerHTML = "";
-    }
+    // document.getElementById('leftColors' + key).innerHTML = left_colors[key] || 0
+    document.getElementById('leftColors' + key).innerHTML = to_use_colors[key] - used_colors[key];
+
+    document.getElementById('multiColorInfo').innerHTML =
+      multiColorUsed ? "if combined color track in use then Locomotive number can be suboptimal" : "";
   });
 }
 
