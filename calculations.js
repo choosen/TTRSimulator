@@ -464,12 +464,24 @@ function f_copy_link() {
 function f_refresh_left_colors_ui() {
   if (x_planned_vs_set_status !== 'OK') return f_cleanup_left_colors_ui();
 
-  document.getElementById('leftColors0').innerHTML = last_locos_to_use
+  // show loco # from simulation, but it can be wrong, as multiple valid combination can require less locos
+  let locomotive_left_caption = last_locos_to_use
+
+  const multiColorUsed = combined_colors_labels.some((color) => used_colors[color] > 0)
+  if (multiColorUsed) locomotive_left_caption += " ?"
+  document.getElementById('leftColors0').innerHTML = locomotive_left_caption
 
   Object.keys(used_colors).forEach(key => {
     if ([...combined_colors_labels, '0'].includes(key)) return;
 
-    document.getElementById('leftColors' + key).innerHTML = left_colors[key] || 0
+    // I decided to show just simple diff, without applying 1 possible solution of multiple multiColor tracks
+    if (multiColorUsed) {
+      document.getElementById('leftColors' + key).innerHTML = left_colors[key] || 0
+      document.getElementById('multiColorInfo').innerHTML = "if combined color track in use then Locomotive number can be suboptimal"
+    } else {
+      document.getElementById('leftColors' + key).innerHTML = to_use_colors[key] - used_colors[key];
+      document.getElementById('multiColorInfo').innerHTML = "";
+    }
   });
 }
 
