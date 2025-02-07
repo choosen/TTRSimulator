@@ -43,8 +43,14 @@ th {
 	height: 16px;
 }
 
+.multiColorBtnContainer {
+	display: inline;
+}
+
 .multiColorBtn {
 	font-size: xx-small;
+	padding-left: 1px;
+	padding-right: 1px;
 }
 
 .rail {
