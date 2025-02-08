@@ -18,6 +18,9 @@ Click `Save set` button to store default initial setup
 
 By default there is 44 seed with 6 locos and 6/4 per colors
 
+You can select your own color on mutli color routes, to make the show optimised locomotive usage 
+(with not selected multi paths it shows the earliest solved solution only, not optimal)
+
 ## Bugs
 
 - not known, feel free to report
