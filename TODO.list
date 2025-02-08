@@ -1,8 +1,9 @@
 - [done, focus outside the inputs] paste
-  - indicate clipboard option to setup [only in readme for now..]
+  - indicate clipboard option to setup [only in readme for now.. cannot paste in mobiles ;/]
 - spin of this project: interactive map of tickets (cities or highliting shortest path)
 - list completed tracks (for opps moves analysis, or to draw or not tix in last move)
 - [Partly completed] choose color on double color routes (My idea is to do it in Helper only, to make faster the route planning experience itself)
   - missing: handling to choose the only 1 of 2,3 routes with same color combo (only for blue/white orange/black red/yellow)
+  - bug: remianing cards are not correctly displayed when all multicolors are selected
 - add ''remaining'' column to helper (multiple multicolors can use not optimized locos #, so I put `?` close to locos left when multiple multicolors)
   - missing: pick up best result of verifications by counting used locos

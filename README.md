@@ -23,7 +23,7 @@ You can select your own color on mutli color routes, to make the show optimised 
 
 ## Bugs
 
-- not known, feel free to report
+- remaining cards are not correctly displayed when all multicolors are selected. Some completely used are visible as not used at all.
 
 Initial version
 |![screenshot](https://github.com/user-attachments/assets/fdb40635-2ffd-4e86-8e83-3cdd9951f226)
