@@ -27,3 +27,5 @@ You can select your own color on mutli color routes, to make the show optimised 
 
 Initial version
 |![screenshot](https://github.com/user-attachments/assets/fdb40635-2ffd-4e86-8e83-3cdd9951f226)
+Milestone: picking up multiselect colors
+|![screenshot](https://github.com/user-attachments/assets/ca0008f4-e0ee-4fbc-a4ab-b06581716697)
