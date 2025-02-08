@@ -620,14 +620,12 @@ const f_estimate_needed_colors = () => {
   );
 
   const with_selection_used_colors = f_prepare_used_colors_with_selected(combined_color_tracks_with_length)
-  // console.log('debug, with_selection_used_colors=' , with_selection_used_colors, 'selectedMultiColors=', selectedMultiColors)
-  // debugger;
 
   if (f_all_multicolors_selected_manually()) {
     return f_validate_needed_colors(to_use_only_colors, locomotives_to_use, with_selection_used_colors);
   }
 
-  return generateCombinedColorsPermutations(
+  generateCombinedColorsPermutations(
     Object.values(combined_color_tracks_with_length).filter(
       mapping => (selectedMultiColors[Object.keys(mapping)[0]] || 0) === 0
     ).flatMap(
@@ -635,18 +633,18 @@ const f_estimate_needed_colors = () => {
     ).map(
       (combined_label) => combined_label.split('')
     )
-    ).some((selected_colors_a) => {
-      const manipulated_used_colors = { ...with_selection_used_colors };
+  ).some((selected_colors_a) => {
+    const manipulated_used_colors = { ...with_selection_used_colors };
 
-      selected_colors_a.forEach((color, index) =>
-        manipulated_used_colors[color] =
-          manipulated_used_colors[color] +  Object.values(Object.values(combined_color_tracks_with_length)[index])[0]
-      )
+    selected_colors_a.forEach((color, index) =>
+      manipulated_used_colors[color] =
+        manipulated_used_colors[color] +  Object.values(Object.values(combined_color_tracks_with_length)[index])[0]
+    )
 
-      f_validate_needed_colors(to_use_only_colors, locomotives_to_use, manipulated_used_colors);
+    f_validate_needed_colors(to_use_only_colors, locomotives_to_use, manipulated_used_colors);
 
-      return x_planned_vs_set_status == 'OK'
-    });
+    return x_planned_vs_set_status == 'OK'
+  });
 }
 
 const f_validate_needed_colors = (to_use_only_colors, locomotives_to_use, manipulated_used_colors) => {

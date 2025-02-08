@@ -3,6 +3,5 @@
 - spin of this project: interactive map of tickets (cities or highliting shortest path)
 - list completed tracks (for opps moves analysis, or to draw or not tix in last move)
 - choose color on double color routes (My idea is to do it in Helper only, to make faster the route planning experience itself)
-  - todo: UI to indicate which multi-color was chosen (radio box?)
   - missing: handling to choose the only 1 of 2,3 routes with same color combo (only for blue/white orange/black red/yellow)
 - add ''remaining'' column to helper (multiple multicolors can use not optimized locos #, so I put `?` close to locos left when multiple multicolors)

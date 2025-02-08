@@ -48,7 +48,8 @@ th {
 }
 
 .radioWithLabel {
-	min-width: 70px;
+	min-width: auto;
+	white-space: nowrap;
 }
 
 .radioWithLabel input {
