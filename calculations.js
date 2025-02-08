@@ -584,15 +584,15 @@ function generateCombinedColorsPermutations(arrays) {
 }
 
 const f_all_multicolors_selected_manually = () =>
-  combined_colors_labels.every(id => (used_colors[id] || 0) === 0 || selectedMultiColors.hasOwnProperty(id));
+  combined_colors_labels.every(id => (used_colors[id] || 0) === 0 || (selectedMultiColors[id] || 0) !== 0);
 
 const f_prepare_used_colors_with_selected = (combined_color_tracks_with_length) => {
   const used_colors_with_multi_selected = {...used_colors}
 
   combined_color_tracks_with_length.forEach((single_mapping) => {
     for (let [used_color_label, trainNumber] of Object.entries(single_mapping)) {
-      let chosenColor = selectedMultiColors[used_color_label]
-      if (chosenColor) {
+      let chosenColor = selectedMultiColors[used_color_label] || 0
+      if (chosenColor !== 0) {
         used_colors_with_multi_selected[chosenColor] += trainNumber
         used_colors_with_multi_selected[used_color_label] = 0
       }
@@ -620,15 +620,19 @@ const f_estimate_needed_colors = () => {
   );
 
   const with_selection_used_colors = f_prepare_used_colors_with_selected(combined_color_tracks_with_length)
-  console.log('debug, with_selection_used_colors=' , with_selection_used_colors, 'selectedMultiColors=', selectedMultiColors)
-  debugger;
+  // console.log('debug, with_selection_used_colors=' , with_selection_used_colors, 'selectedMultiColors=', selectedMultiColors)
+  // debugger;
 
   if (f_all_multicolors_selected_manually()) {
     return f_validate_needed_colors(to_use_only_colors, locomotives_to_use, with_selection_used_colors);
   }
 
   return generateCombinedColorsPermutations(
-    Object.values(combined_color_tracks_with_length).flatMap(values => Object.keys(values)).map(
+    Object.values(combined_color_tracks_with_length).filter(
+      mapping => (selectedMultiColors[Object.keys(mapping)[0]] || 0) === 0
+    ).flatMap(
+      values => Object.keys(values)
+    ).map(
       (combined_label) => combined_label.split('')
     )
     ).some((selected_colors_a) => {
@@ -767,7 +771,7 @@ function reduceIdeals(colorValues, routes) {
 const selectedMultiColors = {};
 
 const f_select_multiple_color = (combinedColorInt, selectedColorInt) => {
-  selectedMultiColors[combinedColorInt.toString()] = selectedColorInt.toString();
+  selectedMultiColors[combinedColorInt.toString()] = selectedColorInt;
   f_estimate_needed_colors();
   f_update_to_use_colors_status();
   f_refresh_left_colors_ui();

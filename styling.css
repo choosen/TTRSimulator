@@ -44,7 +44,15 @@ th {
 }
 
 .multiColorBtnContainer {
-	display: inline;
+	display: flex;
+}
+
+.radioWithLabel {
+	min-width: 70px;
+}
+
+.radioWithLabel input {
+	margin-right: 0px;
 }
 
 .multiColorBtn {
