@@ -467,7 +467,7 @@ function f_refresh_left_colors_ui() {
   // show loco # from simulation, but it can be wrong, as multiple valid combination can require less locos
   let locomotive_left_caption = last_locos_to_use
 
-  const multiColorUsed = combined_colors_labels.some((color) => used_colors[color] > 0)
+  const multiColorUsed = combined_colors_labels.some((color) => used_colors[color] > 0) && !f_all_multicolors_selected_manually()
   if (multiColorUsed) locomotive_left_caption += " ?"
   document.getElementById('leftColors0').innerHTML = locomotive_left_caption
 
@@ -477,10 +477,9 @@ function f_refresh_left_colors_ui() {
     // I decided to show just simple diff, without applying 1 possible solution of multiple multiColor tracks
     // document.getElementById('leftColors' + key).innerHTML = left_colors[key] || 0
     document.getElementById('leftColors' + key).innerHTML = to_use_colors[key] - used_colors[key];
-
-    document.getElementById('multiColorInfo').innerHTML =
-      multiColorUsed ? "if combined color track in use then Locomotive number can be suboptimal" : "";
   });
+  document.getElementById('multiColorInfo').innerHTML =
+    multiColorUsed ? "if combined color track in use then Locomotive number can be suboptimal. Choose color with button" : "";
 }
 
 function f_cleanup_left_colors_ui() {
@@ -584,8 +583,24 @@ function generateCombinedColorsPermutations(arrays) {
   }, [[]]);
 }
 
-// bug example of multi color route status:
-// file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=66,11,76,16&0=6&1=5&2=0&3=0&4=0&5=0&6=0&7=4&8=4
+const f_all_multicolors_selected_manually = () =>
+  combined_colors_labels.every(id => (used_colors[id] || 0) === 0 || selectedMultiColors.hasOwnProperty(id));
+
+const f_prepare_used_colors_with_selected = (combined_color_tracks_with_length) => {
+  const used_colors_with_multi_selected = {...used_colors}
+
+  combined_color_tracks_with_length.forEach((single_mapping) => {
+    for (let [used_color_label, trainNumber] of Object.entries(single_mapping)) {
+      let chosenColor = selectedMultiColors[used_color_label]
+      if (chosenColor) {
+        used_colors_with_multi_selected[chosenColor] += trainNumber
+        used_colors_with_multi_selected[used_color_label] = 0
+      }
+    }
+  })
+
+  return used_colors_with_multi_selected;
+}
 
 const f_estimate_needed_colors = () => {
   const whole_cards_number = Object.values(to_use_colors).reduce((sum, x) => sum + x, 0)
@@ -593,7 +608,8 @@ const f_estimate_needed_colors = () => {
 
   let {'0': locomotives_to_use, ...to_use_only_colors} = to_use_colors;
 
-  if (combined_colors_labels.every(id => (used_colors[id] || 0) === 0)) return f_validate_needed_colors(to_use_only_colors, locomotives_to_use, used_colors);
+  if (combined_colors_labels.every(id => used_colors[id] === 0))
+    return f_validate_needed_colors(to_use_only_colors, locomotives_to_use, used_colors);
 
   let combined_color_tracks_with_length = combined_colors_labels.flatMap(
     (combined_colors) => Array.from(selected_tracks).filter(
@@ -603,12 +619,20 @@ const f_estimate_needed_colors = () => {
     )
   );
 
+  const with_selection_used_colors = f_prepare_used_colors_with_selected(combined_color_tracks_with_length)
+  console.log('debug, with_selection_used_colors=' , with_selection_used_colors, 'selectedMultiColors=', selectedMultiColors)
+  debugger;
+
+  if (f_all_multicolors_selected_manually()) {
+    return f_validate_needed_colors(to_use_only_colors, locomotives_to_use, with_selection_used_colors);
+  }
+
   return generateCombinedColorsPermutations(
     Object.values(combined_color_tracks_with_length).flatMap(values => Object.keys(values)).map(
       (combined_label) => combined_label.split('')
     )
     ).some((selected_colors_a) => {
-      const manipulated_used_colors = { ...used_colors };
+      const manipulated_used_colors = { ...with_selection_used_colors };
 
       selected_colors_a.forEach((color, index) =>
         manipulated_used_colors[color] =
@@ -740,8 +764,13 @@ function reduceIdeals(colorValues, routes) {
   }
 }
 
-const f_select_multiple_color = () => {
-  // TODO
+const selectedMultiColors = {};
+
+const f_select_multiple_color = (combinedColorInt, selectedColorInt) => {
+  selectedMultiColors[combinedColorInt.toString()] = selectedColorInt.toString();
+  f_estimate_needed_colors();
+  f_update_to_use_colors_status();
+  f_refresh_left_colors_ui();
 }
 
 //#endregion
