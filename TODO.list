@@ -5,7 +5,7 @@
 - [Partly completed] choose color on double color routes (My idea is to do it in Helper only, to make faster the route planning experience itself)
   - bug: remianing cards are not correctly displayed when all multicolors are selected
   - missing: handling to choose the only 1 of 2,3 routes with same color combo (only for blue/white orange/black red/yellow)
-- Choose color for gray connections, with handling missing in multicolor couple tracks hnadling.
+- Choose color for gray connections, with handling missing in multicolor couple tracks hnadling. Max gray to choose is matematically 25 links.
 - add ''remaining'' column to helper (multiple multicolors can use not optimized locos #, so I put `?` close to locos left when multiple multicolors)
   - missing: pick up best result of verifications by counting used locos
 - apply img class filters for chosen colors :O
