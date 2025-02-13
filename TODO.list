@@ -9,3 +9,9 @@
 - add ''remaining'' column to helper (multiple multicolors can use not optimized locos #, so I put `?` close to locos left when multiple multicolors)
   - missing: pick up best result of verifications by counting used locos
 - apply img class filters for chosen colors :O
+
+All gray colors (34):
+https://choosen.github.io//ttr2/TTRsimulations?tracks=04,06,07,08,09,15,20,21,25,26,27,28,29,30,31,32,33,34,35,39,42,43,44,45,46,47,48,49,50,51,52,56,59,77
+
+All multicolors (12):
+https://choosen.github.io//ttr2/TTRsimulations?tracks=02,03,36,37,38,40,41,57,60,65,67,76
