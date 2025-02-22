@@ -72,30 +72,6 @@ th {
 	text-align: left;
 }
 
-collapseableContainer {
-  user-select: none;
-}
-
-collapseableContainer>clickableHeader span.icon {
-  width: 24px;
-  height: 24px;
-  transition: all 0.3s;
-  margin-left: auto;
-}
-
-collapseableContainer[open] clickableHeader span.icon {
-  transform: rotate(180deg);
-}
-
-clickableHeader {
-  display: flex;
-  cursor: pointer;
-}
-
-clickableHeader::-webkit-collapseableContainer-marker {
-  display: none;
-}
-
 .imgBlue {
 	filter: invert(100%) sepia(29%) hue-rotate(195deg)  saturate(67) contrast(1.5)
 }

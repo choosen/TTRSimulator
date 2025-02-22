@@ -14,322 +14,329 @@
 <body>
 	<!-- ZONE PANEAU UTILISATEUR -->
 	<div id="panneau">
-		<button type="button" onclick="f_cleanup_routes()">Refresh routes</button>
-		<button type="button" onclick="f_copy_link()">Copy Link</button>
-		<br>
-		<br>
-		<table>
-			<tbody>
-				<tr>
-					<td><input name="txt_liens" type="text" class="txt-info" id="txt_liens" disabled /></td>
-					<td>Liaisons/Links</td>
-				</tr>
-				<tr>
-					<td><input name="txt_longueur" type="text" class="txt-info" id="txt_longueur" disabled /></td>
-					<td>Longeur/Length</td>
-				</tr>
-				<tr>
-					<td><input name="txt_points" type="text" class="txt-info" id="txt_points" disabled /></td>
-					<td>Points</td>
-				</tr>
-				<tr>
-					<td><textarea name="txt_to_use_colors_status" class="txt-info" id="txt_to_use_colors_status"
-							disabled></textarea></td>
-					<td>Planned vs set status</td>
-				</tr>
-			</tbody>
-		</table>
-		<p>
-			Cards helper
-			<button class="save-set-button" type="button" onclick="f_localstore_colors_set()">
-				Save set
-			</button>
-		</p>
-		<form name="usedColorsForm">
-			<table border="1" cellpadding="1" cellspacing="0">
+		<details open>
+			<summary>
+				Calculations and buttons
+			</summary>
+			<button type="button" onclick="f_cleanup_routes()">Refresh routes</button>
+			<button type="button" onclick="f_copy_link()">Copy Link</button>
+			<br>
+			<br>
+			<table>
 				<tbody>
 					<tr>
-						<th>Used</th>
-						<th>Card type</th>
-						<th>Left</th>
-						<th>
-							Your set:<span id="set_sum">0</span>
-						</th>
+						<td><input name="txt_liens" type="text" class="txt-info" id="txt_liens" disabled /></td>
+						<td>Liaisons/Links</td>
 					</tr>
 					<tr>
-						<td id="usedColors0" style="color: gray;"></td>
-						<th>Any|Locomotive</th>
-						<th id="leftColors0"
-							style="background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%, rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, rgba(28,127,238,1) 60%, rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%);">
-						</th>
-						<td><input name="txt_to_use_0" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="14"
-								class="txt-to-use" id="txt_to_use_0" autofocus /></td>
+						<td><input name="txt_longueur" type="text" class="txt-info" id="txt_longueur" disabled /></td>
+						<td>Longeur/Length</td>
 					</tr>
 					<tr>
-						<td id="usedColors1"></td>
-						<th bgcolor="pink">Pink</th>
-						<td id="leftColors1"></td>
-						<td><input name="txt_to_use_1" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
-								class="txt-to-use" id="txt_to_use_1" /></td>
+						<td><input name="txt_points" type="text" class="txt-info" id="txt_points" disabled /></td>
+						<td>Points</td>
 					</tr>
 					<tr>
-						<td id="usedColors2"></td>
-						<th bgcolor="white">White</th>
-						<td id="leftColors2"></td>
-						<td><input name="txt_to_use_2" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
-								class="txt-to-use" id="txt_to_use_2" /></td>
-					</tr>
-					<tr>
-						<td id="usedColors3"></td>
-						<th bgcolor="dodgerblue" style="color: white;">Blue</th>
-						<td id="leftColors3"></td>
-						<td><input name="txt_to_use_3" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
-								class="txt-to-use" id="txt_to_use_3" /></td>
-					</tr>
-					<tr>
-						<td id="usedColors4"></td>
-						<th bgcolor="yellow">Yellow</th>
-						<td id="leftColors4"></td>
-						<td><input name="txt_to_use_4" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
-								class="txt-to-use" id="txt_to_use_4" /></td>
-					</tr>
-					<tr>
-						<td id="usedColors5"></td>
-						<th bgcolor="orange">Orange</th>
-						<td id="leftColors5"></td>
-						<td><input name="txt_to_use_5" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
-								class="txt-to-use" id="txt_to_use_5" /></td>
-					</tr>
-					<tr>
-						<td id="usedColors6"></td>
-						<th bgcolor="black" style="color: white;">Black</th>
-						<td id="leftColors6"></td>
-						<td><input name="txt_to_use_6" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
-								class="txt-to-use" id="txt_to_use_6" /></td>
-					</tr>
-					<tr>
-						<td id="usedColors7"></td>
-						<th bgcolor="red" style="color: white;">Red</th>
-						<td id="leftColors7"></td>
-						<td><input name="txt_to_use_7" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
-								class="txt-to-use" id="txt_to_use_7" /></td>
-					</tr>
-					<tr>
-						<td id="usedColors8"></td>
-						<th bgcolor="palegreen">Green</th>
-						<td id="leftColors8"></td>
-						<td><input name="txt_to_use_8" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
-								class="txt-to-use" id="txt_to_use_8" /></td>
-					</tr>
-					<tr style="color: dodgerblue;">
-						<td id="usedColors13"></td>
-						<th bgcolor="Pink" colspan="3">
-							<!-- Pink/Blue -->
-							<div class="multiColorBtnContainer">
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors13Pink" name="13"
-										onclick="f_select_multiple_color(13,1)">
-									<label for="usedColors13Pink">Pink</label>
-								</div>
-
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors13Blue" name="13"
-										onclick="f_select_multiple_color(13,3)">
-									<label for="usedColors13Blue">Blue</label>
-								</div>
-
-								<div class="radioWithLabel autoInput">
-									<input type="radio" class="multiColorBtn" id="usedColors13Auto" name="13"
-										onclick="f_select_multiple_color(13,0)" checked>
-									<label for="usedColors13Auto">Auto</label>
-								</div>
-							</div>
-						</th>
-					</tr>
-					<tr style="color: pink;">
-						<td id="usedColors14"></td>
-						<th bgcolor="Yellow" colspan="3">
-							<!-- Pink/Yellow -->
-							<div class="multiColorBtnContainer">
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors14Pink" name="14"
-										onclick="f_select_multiple_color(14,1)">
-									<label for="usedColors14Pink">Pink</label>
-								</div>
-
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors14Yellow" name="14"
-										onclick="f_select_multiple_color(14,4)">
-									<label for="usedColors14Yellow">Yellow</label>
-								</div>
-
-								<div class="radioWithLabel autoInput">
-									<input type="radio" class="multiColorBtn" id="usedColors14Auto" name="14"
-										onclick="f_select_multiple_color(14,0)" checked>
-									<label for="usedColors14Auto">Auto</label>
-								</div>
-							</div>
-						</th>
-					</tr>
-					<tr style="color: palegreen;">
-						<td id="usedColors18"></td>
-						<th bgcolor="Pink" colspan="3">
-							<!-- Pink/Green -->
-							<div class="multiColorBtnContainer">
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors18Pink" name="18"
-										onclick="f_select_multiple_color(18,1)">
-									<label for="usedColors18Pink">Pink</label>
-								</div>
-
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors18Green" name="18"
-										onclick="f_select_multiple_color(18,8)">
-									<label for="usedColors18Green">Green</label>
-								</div>
-
-								<div class="radioWithLabel autoInput">
-									<input type="radio" class="multiColorBtn" id="usedColors18Auto" name="18"
-										onclick="f_select_multiple_color(18,0)" checked>
-									<label for="usedColors18Auto">Auto</label>
-								</div>
-							</div>
-						</th>
-					</tr>
-					<tr style="color: orange;">
-						<td id="usedColors25"></td>
-						<th bgcolor="White" colspan="3">
-							<!-- White/Orange -->
-							<div class="multiColorBtnContainer">
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors25White" name="25"
-										onclick="f_select_multiple_color(25,2)">
-									<label for="usedColors25White">White</label>
-								</div>
-
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors25Orange" name="25"
-										onclick="f_select_multiple_color(25,5)">
-									<label for="usedColors25Orange">Orange</label>
-								</div>
-
-								<div class="radioWithLabel autoInput">
-									<input type="radio" class="multiColorBtn" id="usedColors25Auto" name="25"
-										onclick="f_select_multiple_color(25,0)" checked>
-									<label for="usedColors25Auto">Auto</label>
-								</div>
-							</div>
-						</th>
-					</tr>
-					<tr style="color: palegreen;">
-						<td id="usedColors28"></td>
-						<th bgcolor="White" colspan="3">
-							<!-- White/Green -->
-							<div class="multiColorBtnContainer">
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors28White" name="28"
-										onclick="f_select_multiple_color(28,2)">
-									<label for="usedColors28White">White</label>
-								</div>
-
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors28Green" name="28"
-										onclick="f_select_multiple_color(28,8)">
-									<label for="usedColors28Green">Green</label>
-								</div>
-
-								<div class="radioWithLabel autoInput">
-									<input type="radio" class="multiColorBtn" id="usedColors28Auto" name="28"
-										onclick="f_select_multiple_color(28,0)" checked>
-									<label for="usedColors28Auto">Auto</label>
-								</div>
-							</div>
-						</th>
-					</tr>
-					<tr style="color: orange;">
-						<td id="usedColors45"></td>
-						<th bgcolor="Yellow" colspan="3">
-							<!-- Yellow/Orange -->
-							<div class="multiColorBtnContainer">
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors45Yellow" name="45"
-										onclick="f_select_multiple_color(45,4)">
-									<label for="usedColors45Yellow">Yellow</label>
-								</div>
-
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors45Orange" name="45"
-										onclick="f_select_multiple_color(45,5)">
-									<label for="usedColors45Orange">Orange</label>
-								</div>
-
-								<div class="radioWithLabel autoInput">
-									<input type="radio" class="multiColorBtn" id="usedColors45Auto" name="45"
-										onclick="f_select_multiple_color(45,0)" checked>
-									<label for="usedColors45Auto">Auto</label>
-								</div>
-							</div>
-						</th>
-					</tr>
-					<tr style="color: red;">
-						<td id="usedColors47"></td>
-						<th bgcolor="Yellow" colspan="3">
-							<!-- Yellow/Red -->
-							<div class="multiColorBtnContainer">
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors47Yellow" name="47"
-										onclick="f_select_multiple_color(47,4)">
-									<label for="usedColors47Yellow">Yellow</label>
-								</div>
-
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors47Red" name="47"
-										onclick="f_select_multiple_color(47,7)">
-									<label for="usedColors47Red">Red</label>
-								</div>
-
-								<div class="radioWithLabel autoInput">
-									<input type="radio" class="multiColorBtn" id="usedColors47Auto" name="47"
-										onclick="f_select_multiple_color(47,0)" checked>
-									<label for="usedColors47Auto">Auto</label>
-								</div>
-							</div>
-						</th>
-					</tr>
-					<tr>
-						<td id="usedColors56"></td>
-						<th bgcolor="Orange" colspan="3">
-							<!-- Orange/Black -->
-							<div class="multiColorBtnContainer">
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors56Orange" name="56"
-										onclick="f_select_multiple_color(56,5)">
-									<label for="usedColors56Orange">Orange</label>
-								</div>
-
-								<div class="radioWithLabel">
-									<input type="radio" class="multiColorBtn" id="usedColors56Black" name="56"
-										onclick="f_select_multiple_color(56,6)">
-									<label for="usedColors56Black">Black</label>
-								</div>
-
-								<div class="radioWithLabel autoInput">
-									<input type="radio" class="multiColorBtn" id="usedColors56Auto" name="56"
-										onclick="f_select_multiple_color(56,0)" checked>
-									<label for="usedColors56Auto">Auto</label>
-								</div>
-							</div>
-						</th>
+						<td><textarea name="txt_to_use_colors_status" class="txt-info" id="txt_to_use_colors_status"
+								disabled></textarea></td>
+						<td>Planned vs set status</td>
 					</tr>
 				</tbody>
 			</table>
-			<div id="multiColorInfo"></div>
-		</form>
-		<br>
-		<collapseableContainer>
-			<clickableHeader>
+		</details>
+		<details open>
+			<summary>
+				Cards helper
+				<button class="save-set-button" type="button" onclick="f_localstore_colors_set()">
+					Save set
+				</button>
+			</summary>
+			</p>
+			<form name="usedColorsForm">
+				<table border="1" cellpadding="1" cellspacing="0">
+					<tbody>
+						<tr>
+							<th>Used</th>
+							<th>Card type</th>
+							<th>Left</th>
+							<th>
+								Your set:<span id="set_sum">0</span>
+							</th>
+						</tr>
+						<tr>
+							<td id="usedColors0" style="color: gray;"></td>
+							<th>Any|Locomotive</th>
+							<th id="leftColors0"
+								style="background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%, rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, rgba(28,127,238,1) 60%, rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%);">
+							</th>
+							<td><input name="txt_to_use_0" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="14"
+									class="txt-to-use" id="txt_to_use_0" autofocus /></td>
+						</tr>
+						<tr>
+							<td id="usedColors1"></td>
+							<th bgcolor="pink">Pink</th>
+							<td id="leftColors1"></td>
+							<td><input name="txt_to_use_1" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
+									class="txt-to-use" id="txt_to_use_1" /></td>
+						</tr>
+						<tr>
+							<td id="usedColors2"></td>
+							<th bgcolor="white">White</th>
+							<td id="leftColors2"></td>
+							<td><input name="txt_to_use_2" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
+									class="txt-to-use" id="txt_to_use_2" /></td>
+						</tr>
+						<tr>
+							<td id="usedColors3"></td>
+							<th bgcolor="dodgerblue" style="color: white;">Blue</th>
+							<td id="leftColors3"></td>
+							<td><input name="txt_to_use_3" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
+									class="txt-to-use" id="txt_to_use_3" /></td>
+						</tr>
+						<tr>
+							<td id="usedColors4"></td>
+							<th bgcolor="yellow">Yellow</th>
+							<td id="leftColors4"></td>
+							<td><input name="txt_to_use_4" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
+									class="txt-to-use" id="txt_to_use_4" /></td>
+						</tr>
+						<tr>
+							<td id="usedColors5"></td>
+							<th bgcolor="orange">Orange</th>
+							<td id="leftColors5"></td>
+							<td><input name="txt_to_use_5" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
+									class="txt-to-use" id="txt_to_use_5" /></td>
+						</tr>
+						<tr>
+							<td id="usedColors6"></td>
+							<th bgcolor="black" style="color: white;">Black</th>
+							<td id="leftColors6"></td>
+							<td><input name="txt_to_use_6" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
+									class="txt-to-use" id="txt_to_use_6" /></td>
+						</tr>
+						<tr>
+							<td id="usedColors7"></td>
+							<th bgcolor="red" style="color: white;">Red</th>
+							<td id="leftColors7"></td>
+							<td><input name="txt_to_use_7" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
+									class="txt-to-use" id="txt_to_use_7" /></td>
+						</tr>
+						<tr>
+							<td id="usedColors8"></td>
+							<th bgcolor="palegreen">Green</th>
+							<td id="leftColors8"></td>
+							<td><input name="txt_to_use_8" onchange="f_fetch_used_colors_from_ui()" type="number" min="0" max="12"
+									class="txt-to-use" id="txt_to_use_8" /></td>
+						</tr>
+						<tr style="color: dodgerblue;">
+							<td id="usedColors13"></td>
+							<th bgcolor="Pink" colspan="3">
+								<!-- Pink/Blue -->
+								<div class="multiColorBtnContainer">
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors13Pink" name="13"
+											onclick="f_select_multiple_color(13,1)">
+										<label for="usedColors13Pink">Pink</label>
+									</div>
+
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors13Blue" name="13"
+											onclick="f_select_multiple_color(13,3)">
+										<label for="usedColors13Blue">Blue</label>
+									</div>
+
+									<div class="radioWithLabel autoInput">
+										<input type="radio" class="multiColorBtn" id="usedColors13Auto" name="13"
+											onclick="f_select_multiple_color(13,0)" checked>
+										<label for="usedColors13Auto">Auto</label>
+									</div>
+								</div>
+							</th>
+						</tr>
+						<tr style="color: pink;">
+							<td id="usedColors14"></td>
+							<th bgcolor="Yellow" colspan="3">
+								<!-- Pink/Yellow -->
+								<div class="multiColorBtnContainer">
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors14Pink" name="14"
+											onclick="f_select_multiple_color(14,1)">
+										<label for="usedColors14Pink">Pink</label>
+									</div>
+
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors14Yellow" name="14"
+											onclick="f_select_multiple_color(14,4)">
+										<label for="usedColors14Yellow">Yellow</label>
+									</div>
+
+									<div class="radioWithLabel autoInput">
+										<input type="radio" class="multiColorBtn" id="usedColors14Auto" name="14"
+											onclick="f_select_multiple_color(14,0)" checked>
+										<label for="usedColors14Auto">Auto</label>
+									</div>
+								</div>
+							</th>
+						</tr>
+						<tr style="color: palegreen;">
+							<td id="usedColors18"></td>
+							<th bgcolor="Pink" colspan="3">
+								<!-- Pink/Green -->
+								<div class="multiColorBtnContainer">
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors18Pink" name="18"
+											onclick="f_select_multiple_color(18,1)">
+										<label for="usedColors18Pink">Pink</label>
+									</div>
+
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors18Green" name="18"
+											onclick="f_select_multiple_color(18,8)">
+										<label for="usedColors18Green">Green</label>
+									</div>
+
+									<div class="radioWithLabel autoInput">
+										<input type="radio" class="multiColorBtn" id="usedColors18Auto" name="18"
+											onclick="f_select_multiple_color(18,0)" checked>
+										<label for="usedColors18Auto">Auto</label>
+									</div>
+								</div>
+							</th>
+						</tr>
+						<tr style="color: orange;">
+							<td id="usedColors25"></td>
+							<th bgcolor="White" colspan="3">
+								<!-- White/Orange -->
+								<div class="multiColorBtnContainer">
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors25White" name="25"
+											onclick="f_select_multiple_color(25,2)">
+										<label for="usedColors25White">White</label>
+									</div>
+
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors25Orange" name="25"
+											onclick="f_select_multiple_color(25,5)">
+										<label for="usedColors25Orange">Orange</label>
+									</div>
+
+									<div class="radioWithLabel autoInput">
+										<input type="radio" class="multiColorBtn" id="usedColors25Auto" name="25"
+											onclick="f_select_multiple_color(25,0)" checked>
+										<label for="usedColors25Auto">Auto</label>
+									</div>
+								</div>
+							</th>
+						</tr>
+						<tr style="color: palegreen;">
+							<td id="usedColors28"></td>
+							<th bgcolor="White" colspan="3">
+								<!-- White/Green -->
+								<div class="multiColorBtnContainer">
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors28White" name="28"
+											onclick="f_select_multiple_color(28,2)">
+										<label for="usedColors28White">White</label>
+									</div>
+
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors28Green" name="28"
+											onclick="f_select_multiple_color(28,8)">
+										<label for="usedColors28Green">Green</label>
+									</div>
+
+									<div class="radioWithLabel autoInput">
+										<input type="radio" class="multiColorBtn" id="usedColors28Auto" name="28"
+											onclick="f_select_multiple_color(28,0)" checked>
+										<label for="usedColors28Auto">Auto</label>
+									</div>
+								</div>
+							</th>
+						</tr>
+						<tr style="color: orange;">
+							<td id="usedColors45"></td>
+							<th bgcolor="Yellow" colspan="3">
+								<!-- Yellow/Orange -->
+								<div class="multiColorBtnContainer">
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors45Yellow" name="45"
+											onclick="f_select_multiple_color(45,4)">
+										<label for="usedColors45Yellow">Yellow</label>
+									</div>
+
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors45Orange" name="45"
+											onclick="f_select_multiple_color(45,5)">
+										<label for="usedColors45Orange">Orange</label>
+									</div>
+
+									<div class="radioWithLabel autoInput">
+										<input type="radio" class="multiColorBtn" id="usedColors45Auto" name="45"
+											onclick="f_select_multiple_color(45,0)" checked>
+										<label for="usedColors45Auto">Auto</label>
+									</div>
+								</div>
+							</th>
+						</tr>
+						<tr style="color: red;">
+							<td id="usedColors47"></td>
+							<th bgcolor="Yellow" colspan="3">
+								<!-- Yellow/Red -->
+								<div class="multiColorBtnContainer">
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors47Yellow" name="47"
+											onclick="f_select_multiple_color(47,4)">
+										<label for="usedColors47Yellow">Yellow</label>
+									</div>
+
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors47Red" name="47"
+											onclick="f_select_multiple_color(47,7)">
+										<label for="usedColors47Red">Red</label>
+									</div>
+
+									<div class="radioWithLabel autoInput">
+										<input type="radio" class="multiColorBtn" id="usedColors47Auto" name="47"
+											onclick="f_select_multiple_color(47,0)" checked>
+										<label for="usedColors47Auto">Auto</label>
+									</div>
+								</div>
+							</th>
+						</tr>
+						<tr>
+							<td id="usedColors56"></td>
+							<th bgcolor="Orange" colspan="3">
+								<!-- Orange/Black -->
+								<div class="multiColorBtnContainer">
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors56Orange" name="56"
+											onclick="f_select_multiple_color(56,5)">
+										<label for="usedColors56Orange">Orange</label>
+									</div>
+
+									<div class="radioWithLabel">
+										<input type="radio" class="multiColorBtn" id="usedColors56Black" name="56"
+											onclick="f_select_multiple_color(56,6)">
+										<label for="usedColors56Black">Black</label>
+									</div>
+
+									<div class="radioWithLabel autoInput">
+										<input type="radio" class="multiColorBtn" id="usedColors56Auto" name="56"
+											onclick="f_select_multiple_color(56,0)" checked>
+										<label for="usedColors56Auto">Auto</label>
+									</div>
+								</div>
+							</th>
+						</tr>
+					</tbody>
+				</table>
+				<div id="multiColorInfo"></div>
+			</form>
+		</details>
+		<details open>
+			<summary>
 				Stat liaisons/Links points
-			</clickableHeader>
+			</summary>
 			<table border="1" cellpadding="2" cellspacing="0">
 				<tbody>
 					<tr>
@@ -376,7 +383,7 @@
 					</tr>
 				</tbody>
 			</table>
-		</collapseableContainer>
+		</details>
 
 	</div>
 
