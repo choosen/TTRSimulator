@@ -72,27 +72,27 @@ th {
 	text-align: left;
 }
 
-.collapseableContainer {
+collapseableContainer {
   user-select: none;
 }
 
-.collapseableContainer>.clickableHeader span.icon {
+collapseableContainer>clickableHeader span.icon {
   width: 24px;
   height: 24px;
   transition: all 0.3s;
   margin-left: auto;
 }
 
-.collapseableContainer[open] .clickableHeader span.icon {
+collapseableContainer[open] clickableHeader span.icon {
   transform: rotate(180deg);
 }
 
-.clickableHeader {
+clickableHeader {
   display: flex;
   cursor: pointer;
 }
 
-.clickableHeader::-webkit-.collapseableContainer-marker {
+clickableHeader::-webkit-collapseableContainer-marker {
   display: none;
 }
 
