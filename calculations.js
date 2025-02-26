@@ -772,10 +772,11 @@ function reduceIdeals(colorValues, routes) {
   }
 }
 
-const selectedMultiColors = {};
+const selectedRoutes = {};
 
-const f_select_multiple_color = (combinedColorInt, selectedColorInt) => {
-  selectedMultiColors[combinedColorInt.toString()] = selectedColorInt;
+const f_select_route_color = (route, color) => {
+  // TODO
+  selectedRoutes[route.toString()] = color;
   f_estimate_needed_colors();
   f_update_to_use_colors_status();
   f_refresh_left_colors_ui();
