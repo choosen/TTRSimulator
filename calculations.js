@@ -500,11 +500,14 @@ function f_refresh_simulation_stats_ui() {
   document.getElementById('txt_liens').value = x_liens;
 
   Object.keys(used_colors).forEach(key => {
-    document.getElementById('usedColors' + key).innerHTML = used_colors[key] == 0 ? '' : used_colors[key]
+    if (!combined_colors_labels.includes(key)) {
+      document.getElementById('usedColors' + key).innerHTML = used_colors[key] == 0 ? '' : used_colors[key]
+    }
   });
 
   f_update_to_use_colors_status();
-  f_show_only_used_combined_colors();
+  // f_show_only_used_combined_colors();
+  // f_show_only_used_tracks_color_selection();
   f_refresh_set_sum();
   f_refresh_left_colors_ui();
 }
@@ -513,11 +516,12 @@ function f_update_to_use_colors_status() {
   document.getElementById('txt_to_use_colors_status').value = x_planned_vs_set_status;
 }
 
-function f_show_only_used_combined_colors() {
-  combined_colors_labels.forEach((combined_color) =>
-    document.getElementById('usedColors' + combined_color).parentNode.style.display = used_colors[combined_color] === 0 ? 'none' : ''
-  )
-}
+// rename f_show_only_used_tracks_color_selection
+// function f_show_only_used_combined_colors() {
+//   combined_colors_labels.forEach((combined_color) =>
+//     document.getElementById('usedColors' + combined_color).parentNode.style.display = used_colors[combined_color] === 0 ? 'none' : ''
+//   )
+// }
 
 function f_sync_ui_set_colors() {
   Object.keys(to_use_colors).forEach(key =>
@@ -856,7 +860,8 @@ const f_setup_example_colors_set = () => {
 setTimeout(() => {
   f_init_colors_set()
   f_init_selected_tracks();
-  f_show_only_used_combined_colors();
+  // f_show_only_used_combined_colors();
+  // f_show_only_used_tracks_color_selection();
   f_refresh_left_colors_ui();
   f_update_to_use_colors_status();
 }, 50);
