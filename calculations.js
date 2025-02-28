@@ -594,7 +594,12 @@ function generateCombinedColorsPermutations(arrays) {
 let selectedMultiColors = {}; // just temporary to not break whole UI
 
 const f_all_multicolors_selected_manually = () =>
-  combined_colors_labels.every(id => (used_colors[id] || 0) === 0 || (selectedMultiColors[id] || 0) !== 0);
+  selected_tracks.values().filter((track) =>
+    combined_colors_labels.includes(link_data[track].colors)
+  ).every((track) =>
+    (selectedRouteColorMapping[track] || 0) !== 0
+  )
+  // combined_colors_labels.every(id => (used_colors[id] || 0) === 0 || (selectedMultiColors[id] || 0) !== 0);
 
 const f_prepare_used_colors_with_selected = (combined_color_tracks_with_length) => {
   const used_colors_with_multi_selected = { ...used_colors }
@@ -776,10 +781,10 @@ function reduceIdeals(colorValues, routes) {
   }
 }
 
-const selectedRoutes = {};
+const selectedRouteColorMapping = {};
 
 const f_select_route_color = (route, color) => {
-  selectedRoutes[route.toString()] = color;
+  selectedRouteColorMapping[route.toString()] = color;
   f_estimate_needed_colors();
   f_update_to_use_colors_status();
   f_refresh_left_colors_ui();
