@@ -583,11 +583,11 @@ function generateCombinedColorsPermutations(arrays) {
 
   // Use reduce to accumulate combinations
   return arrays.reduce((acc, currentArray) => {
-      return acc.flatMap(accElement =>
-          currentArray.map(currentElement =>
-              [...accElement, currentElement]
-          )
-      );
+    return acc.flatMap(accElement =>
+      currentArray.map(currentElement =>
+        [...accElement, currentElement]
+      )
+    );
   }, [[]]);
 }
 
