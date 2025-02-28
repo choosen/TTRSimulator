@@ -678,7 +678,8 @@ const f_validate_needed_colors = (to_use_only_colors, locomotives_to_use, manipu
   let simple_color_diffs = Object.fromEntries(Object.entries(to_use_only_colors).map(
     ([color, set]) => [color, set - manipulated_used_colors[color]]
   ));
-  let needed_locos_for_color_link = [0, ...Object.values(simple_color_diffs)].reduce((sum, x) => x < 0 ? sum - x : sum)
+  let needed_locos_for_color_link =
+    [0, ...Object.values(simple_color_diffs)].reduce((sum, x) => x < 0 ? sum - x : sum)
 
   locomotives_to_use -= needed_locos_for_color_link
 
