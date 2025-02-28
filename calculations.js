@@ -864,8 +864,7 @@ const f_setup_example_colors_set = () => {
 setTimeout(() => {
   f_init_colors_set()
   f_init_selected_tracks();
-  // f_show_only_used_combined_colors();
-  // f_show_only_used_tracks_color_selection();
+  f_show_only_used_tracks_color_selection();
   f_refresh_left_colors_ui();
   f_update_to_use_colors_status();
 }, 50);
