@@ -520,7 +520,7 @@ function f_show_only_used_tracks_color_selection() {
     let autoButton = document.getElementById('usedColorsRoute' + track + 'Auto')
     if (autoButton) {
       autoButton.parentNode.parentNode.parentNode.parentNode.style.display =
-        (selected_tracks.values().some(a => a === track)) ? 'table-row' : 'none'
+        (selected_tracks.has(track)) ? 'table-row' : 'none'
     }
   })
 }
@@ -599,7 +599,7 @@ const f_all_multicolors_selected_manually = () =>
   ).every((track) =>
     (selectedRouteColorMapping[track] || 0) !== 0
   )
-  // combined_colors_labels.every(id => (used_colors[id] || 0) === 0 || (selectedMultiColors[id] || 0) !== 0);
+// combined_colors_labels.every(id => (used_colors[id] || 0) === 0 || (selectedMultiColors[id] || 0) !== 0);
 
 const f_prepare_used_colors_with_selected = (combined_color_tracks_with_length) => {
   const used_colors_with_multi_selected = { ...used_colors }
@@ -617,17 +617,29 @@ const f_prepare_used_colors_with_selected = (combined_color_tracks_with_length) 
   return used_colors_with_multi_selected;
 }
 
+const none_gray_color_selected = () => {
+  used_colors['0'] === 0 &&
+    selected_tracks.values().filter((track) =>
+      link_data[track].colors === '0'
+    ).every((track) =>
+      (selectedRouteColorMapping[track] || 0) === 0
+    )
+}
+
+const none_multiroute_chosen = () =>
+  combined_colors_labels.every(id => used_colors[id] === 0)
+
 const f_estimate_needed_colors = () => {
   const whole_cards_number = Object.values(to_use_colors).reduce((sum, x) => sum + x, 0)
   if (whole_cards_number < x_longeur) return x_planned_vs_set_status = 'TooLong'
 
   let { '0': locomotives_to_use, ...to_use_only_colors } = to_use_colors;
 
-  if (combined_colors_labels.every(id => used_colors[id] === 0))
+  if (none_gray_color_selected() && none_multiroute_chosen())
     return f_validate_needed_colors(to_use_only_colors, locomotives_to_use, used_colors);
 
   let combined_color_tracks_with_length = combined_colors_labels.flatMap(
-    (combined_colors) => Array.from(selected_tracks).filter(
+    (combined_colors) => selected_tracks.values().filter(
       (id) => link_data[id].colors == combined_colors
     ).map(
       (id) => { return { [`${combined_colors}`]: link_data[id].length } }
