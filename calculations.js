@@ -430,14 +430,30 @@ const link_data = {
 
 function f_toggle_link(id, _lng, skipVerification = false) {
   var rail_obj = document.getElementById('rail_' + id);
+  let sign_of_change;
   if (rail_obj.style.visibility == 'visible') {
     rail_obj.style.visibility = 'hidden';
-    f_info_actu(id, -1, skipVerification);
+    sign_of_change = -1
   } else {
     rail_obj.style.visibility = 'visible';
-    f_info_actu(id, +1, skipVerification);
+    sign_of_change = +1
   }
+  f_info_actu(id, sign_of_change, skipVerification);
   f_refresh_simulation_stats_ui();
+  if (!skipVerification) f_update_url_history_ui(id, sign_of_change)
+}
+
+// jump  file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=11,63,09,72,64,67,18,75,16&0=6&1=6&2=6&3=6&4=4&5=4&6=4&7=4&8=4
+function f_update_url_history_ui(track, sign_of_change) {
+  if (document.location.origin.includes('file://'))
+    return
+
+  let caption = `TTR Simulations: ${sign_of_change > 0 ? 'Select' : 'Unselect'} ${link_data[track].cities}`
+  document.title = caption
+
+  const new_search_params = new URLSearchParams({ tracks: Array.from(selected_tracks) }).toString().replaceAll('%2C', ',');
+  let url = `/${window.location.pathname}?${new_search_params}`
+  window.history.pushState('', `Description: ${caption}`, url);
 }
 
 const f_fetch_used_colors_from_ui = () => {
