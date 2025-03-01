@@ -717,8 +717,13 @@ const f_validate_needed_colors = (to_use_only_colors, locomotives_to_use, manipu
 
   // REAL VALIDATION
   // cannot split 3 red + 1 white into two links 2x
-  const any_routes = Array.from(selected_tracks).filter(id => link_data[id]['colors'] == '0').map(id => link_data[id]['length'])
-  if (!verifyAnyTracksWithColors(left_colors, any_routes, locomotives_to_use)) return x_planned_vs_set_status = 'ANY FAILED'
+  const any_with_unselected_color_routes =
+    Array.from(selected_tracks).
+      filter(id => link_data[id]['colors'] == '0').
+      filter(id => (selectedRouteColorMapping[id] || 0) === 0).
+      map(id => link_data[id]['length'])
+  if (!verifyAnyTracksWithColors(left_colors, any_with_unselected_color_routes, locomotives_to_use))
+    return x_planned_vs_set_status = 'ANY FAILED'
 
   x_planned_vs_set_status = 'OK'
 }
