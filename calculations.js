@@ -816,7 +816,8 @@ function reduceIdeals(colorValues, routes) {
 const selectedRouteColorMapping = {};
 
 const f_select_route_color = (route, color) => {
-  selectedRouteColorMapping[route.toString()] = color;
+  let routeLabel = route > 9 ? route.toString() : '0' + route.toString();
+  selectedRouteColorMapping[routeLabel] = color;
   f_estimate_needed_colors();
   f_update_to_use_colors_status();
   f_refresh_left_colors_ui();
