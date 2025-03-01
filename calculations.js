@@ -525,6 +525,26 @@ function f_show_only_used_tracks_color_selection() {
   })
 }
 
+const colorCssClassMapping = {
+  0: 'imgGray',
+  1: "imgPink",
+  2: "imgWhite",
+  3: "imgBlue",
+  4: "imgYellow",
+  5: "imgOrange",
+  6: "imgBlack",
+  7: "imgRed",
+  8: "imgGreen",
+}
+
+function f_sync_selected_colors_ui() {
+  Object.keys(selectedRouteColorMapping).forEach(track => {
+    let color = selectedRouteColorMapping[track]
+    let klass = colorCssClassMapping[color]
+    document.getElementById('rail_' + track).classList = 'rail ' + klass;
+  })
+}
+
 function f_sync_ui_set_colors() {
   Object.keys(to_use_colors).forEach(key =>
     document.getElementById('txt_to_use_' + key).value = to_use_colors[key]
@@ -800,6 +820,7 @@ const f_select_route_color = (route, color) => {
   f_estimate_needed_colors();
   f_update_to_use_colors_status();
   f_refresh_left_colors_ui();
+  f_sync_selected_colors_ui();
 }
 
 //#endregion
