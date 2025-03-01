@@ -448,8 +448,9 @@ function f_update_url_history_ui(track, sign_of_change) {
   let caption = `TTR Simulations: ${sign_of_change > 0 ? 'Select' : 'Unselect'} ${link_data[track].cities}`
   document.title = caption
 
-  const new_search_params = new URLSearchParams({ tracks: Array.from(selected_tracks) }).toString().replaceAll('%2C', ',');
-  let url = `${document.location.origin}/${window.location.pathname}?${new_search_params}`
+  const track_search_params = new URLSearchParams({ tracks: Array.from(selected_tracks) }).toString().replaceAll('%2C', ',');
+  const card_helper_search_params = new URLSearchParams(to_use_colors).toString();
+  let url = `${document.location.origin}/${window.location.pathname}?${track_search_params}&${card_helper_search_params}`
   window.history.pushState('', `Description: ${caption}`, url);
 }
 
