@@ -448,9 +448,9 @@ const f_fetch_used_colors_from_ui = () => {
     unified_name = name.replace('txt_to_use_', '')
     to_use_colors[unified_name] = parseInt(value || 0)
   });
-  f_refresh_set_sum();
+  f_refresh_set_sum_ui();
   f_estimate_needed_colors();
-  f_update_to_use_colors_status();
+  f_update_to_use_colors_status_ui();
 }
 
 function f_cleanup_routes() {
@@ -505,17 +505,17 @@ function f_refresh_simulation_stats_ui() {
     }
   });
 
-  f_update_to_use_colors_status();
-  f_show_only_used_tracks_color_selection();
-  f_refresh_set_sum();
+  f_update_to_use_colors_status_ui();
+  f_show_only_used_tracks_color_selection_ui();
+  f_refresh_set_sum_ui();
   f_refresh_left_colors_ui();
 }
 
-function f_update_to_use_colors_status() {
+function f_update_to_use_colors_status_ui() {
   document.getElementById('txt_to_use_colors_status').value = x_planned_vs_set_status;
 }
 
-function f_show_only_used_tracks_color_selection() {
+function f_show_only_used_tracks_color_selection_ui() {
   Object.keys(link_data).forEach((track) => {
     let autoButton = document.getElementById('usedColorsRoute' + track + 'Auto')
     if (autoButton) {
@@ -549,10 +549,10 @@ function f_sync_ui_set_colors() {
   Object.keys(to_use_colors).forEach(key =>
     document.getElementById('txt_to_use_' + key).value = to_use_colors[key]
   );
-  f_refresh_set_sum();
+  f_refresh_set_sum_ui();
 }
 
-function f_refresh_set_sum() {
+function f_refresh_set_sum_ui() {
   const to_use_colors_sum = Object.values(to_use_colors).reduce((sum, x) => sum + x, 0)
   document.getElementById('set_sum').innerHTML = to_use_colors_sum
 };
@@ -611,15 +611,12 @@ function generateCombinedColorsPermutations(arrays) {
   }, [[]]);
 }
 
-let selectedMultiColors = {}; // just temporary to not break whole UI
-
 const f_all_multicolors_selected_manually = () =>
   selected_tracks.values().filter((track) =>
     combined_colors_labels.includes(link_data[track].colors)
   ).every((track) =>
     (selectedRouteColorMapping[track] || 0) !== 0
   )
-// combined_colors_labels.every(id => (used_colors[id] || 0) === 0 || (selectedMultiColors[id] || 0) !== 0);
 
 const f_prepare_used_colors_with_selected = () => {
   const used_colors_with_multi_selected = { ...used_colors }
@@ -819,7 +816,7 @@ const f_select_route_color = (route, color) => {
   let routeLabel = route > 9 ? route.toString() : '0' + route.toString();
   selectedRouteColorMapping[routeLabel] = color;
   f_estimate_needed_colors();
-  f_update_to_use_colors_status();
+  f_update_to_use_colors_status_ui();
   f_refresh_left_colors_ui();
   f_sync_selected_colors_ui();
 }
@@ -903,9 +900,9 @@ const f_setup_example_colors_set = () => {
 setTimeout(() => {
   f_init_colors_set()
   f_init_selected_tracks();
-  f_show_only_used_tracks_color_selection();
+  f_show_only_used_tracks_color_selection_ui();
   f_refresh_left_colors_ui();
-  f_update_to_use_colors_status();
+  f_update_to_use_colors_status_ui();
 }, 50);
 
 //#endregion
