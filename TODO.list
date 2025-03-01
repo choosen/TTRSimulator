@@ -7,3 +7,9 @@
 - add ''remaining'' column to helper (multiple multicolors can use not optimized locos #, so I put `?` close to locos left when multiple multicolors)
   - missing: pick up best result of verifications by counting used locos
   - bug: multi color tracks  cause displaying wrong Left colors column
+
+- |copy link| should not take place -> every route selection should be stored in URL params without need to click it
+
+- bug:
+  - selecting gray color sometimes shows wrong verification result:
+    file:////Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=11,63,09,72,64,67,18,75,16&0=6&1=6&2=6&3=6&4=4&5=4&6=4&7=4&8=4
