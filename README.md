@@ -29,3 +29,5 @@ Initial version
 |![screenshot](https://github.com/user-attachments/assets/fdb40635-2ffd-4e86-8e83-3cdd9951f226)
 Milestone: picking up multiselect colors
 |![screenshot](https://github.com/user-attachments/assets/ca0008f4-e0ee-4fbc-a4ab-b06581716697)
+Milestone: picking up multiselect/gray color tracks
+|![screenshot](https://github.com/user-attachments/assets/19aaa132-eb60-4db6-8677-24319e9d6ce1)
