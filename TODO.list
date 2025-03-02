@@ -6,6 +6,3 @@
 
 - add ''remaining'' column to helper (multiple multicolors can use not optimized locos #, so I put `?` close to locos left when multiple multicolors)
   - missing: pick up best result of verifications by counting used locos
-  - bug: multi color tracks  cause displaying wrong Left colors column
-
-- |copy link| should not take place -> every route selection should be stored in URL params without need to click it

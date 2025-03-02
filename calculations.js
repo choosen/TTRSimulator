@@ -443,7 +443,6 @@ function f_toggle_link(id, _lng, skipVerification = false) {
   if (!skipVerification) f_update_url_history_ui(id, sign_of_change)
 }
 
-// jump  file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=11,63,09,72,64,67,18,75,16&0=6&1=6&2=6&3=6&4=4&5=4&6=4&7=4&8=4
 function f_update_url_history_ui(track, sign_of_change) {
   let caption = `TTR Simulations: ${sign_of_change > 0 ? 'Select' : 'Unselect'} ${link_data[track].cities}`
   document.title = caption
@@ -496,6 +495,19 @@ function f_refresh_left_colors_ui() {
   });
   document.getElementById('multiColorInfo').innerHTML =
     multiColorUsed ? "if combined color track in use then Locomotive number can be suboptimal. Choose color with button" : "";
+
+   if (every_gray_and_multicolor_selected())
+      Object.keys(used_colors).forEach(color => {
+        if ([...combined_colors_labels, '0'].includes(color)) return;
+
+        let selected_manually_count =
+          Object.keys(selectedRouteColorMapping).
+            filter(route => selectedRouteColorMapping[route] == color).
+            map(route => link_data[route].length).
+            reduce((sum, x) => sum + x, 0)
+
+        document.getElementById('leftColors' + color).innerHTML = to_use_colors[color] - used_colors[color] - selected_manually_count
+      })
 }
 
 function f_cleanup_left_colors_ui() {
@@ -647,6 +659,13 @@ const f_prepare_used_colors_with_selected = () => {
   return used_colors_with_multi_selected;
 }
 
+const every_gray_and_multicolor_selected = () =>
+  selected_tracks.values().filter((track) =>
+      combined_colors_labels.concat('0').includes(link_data[track].colors)
+    ).every((track) =>
+      (selectedRouteColorMapping[track] || 0) !== 0
+    )
+
 const none_gray_color_selected = () => {
   used_colors['0'] === 0 &&
     selected_tracks.values().filter((track) =>
@@ -772,7 +791,7 @@ function verifyAnyTracksWithColors(colors, routes, locomotives_to_use) {
   return verifyColorsAndLocos(colorValues.sort((a, b) => b - a), routes.sort((a, b) => b - a), locomotives_to_use);
 }
 
-// failing test example:
+// historical failing test example:
 // file:///Users/piotrwasiak/Code/opensource/TTR%20Simulations/TTRsimulations.html?tracks=76,02,13&0=2&1=5&2=0&3=0&4=0&5=0&6=0&7=4&8=4
 
 // MultiColor fixed:
