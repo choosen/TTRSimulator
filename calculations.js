@@ -496,18 +496,18 @@ function f_refresh_left_colors_ui() {
   document.getElementById('multiColorInfo').innerHTML =
     multiColorUsed ? "if combined color track in use then Locomotive number can be suboptimal. Choose color with button" : "";
 
-   if (every_gray_and_multicolor_selected())
-      Object.keys(used_colors).forEach(color => {
-        if ([...combined_colors_labels, '0'].includes(color)) return;
+  if (every_gray_and_multicolor_selected())
+    Object.keys(used_colors).forEach(color => {
+      if ([...combined_colors_labels, '0'].includes(color)) return;
 
-        let selected_manually_count =
-          Object.keys(selectedRouteColorMapping).
-            filter(route => selectedRouteColorMapping[route] == color).
-            map(route => link_data[route].length).
-            reduce((sum, x) => sum + x, 0)
+      let selected_manually_count =
+        Object.keys(selectedRouteColorMapping).
+          filter(route => selectedRouteColorMapping[route] == color).
+          map(route => link_data[route].length).
+          reduce((sum, x) => sum + x, 0)
 
-        document.getElementById('leftColors' + color).innerHTML = to_use_colors[color] - used_colors[color] - selected_manually_count
-      })
+      document.getElementById('leftColors' + color).innerHTML = to_use_colors[color] - used_colors[color] - selected_manually_count
+    })
 }
 
 function f_cleanup_left_colors_ui() {
@@ -661,10 +661,10 @@ const f_prepare_used_colors_with_selected = () => {
 
 const every_gray_and_multicolor_selected = () =>
   selected_tracks.values().filter((track) =>
-      combined_colors_labels.concat('0').includes(link_data[track].colors)
-    ).every((track) =>
-      (selectedRouteColorMapping[track] || 0) !== 0
-    )
+    combined_colors_labels.concat('0').includes(link_data[track].colors)
+  ).every((track) =>
+    (selectedRouteColorMapping[track] || 0) !== 0
+  )
 
 const none_gray_color_selected = () => {
   used_colors['0'] === 0 &&
